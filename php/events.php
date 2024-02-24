@@ -1,6 +1,6 @@
 <?php
 include_once("./pdo.php");
-
+header('Content-Type: application/json; charset=utf-8');
 if (
     isset($_POST["event_name"]) && isset($_POST["date"]) && isset($_POST["event_location"]) && isset($_POST["vip_ticket_price"]) && isset($_POST["regular_ticket_price"])
     && isset($_POST["max_attendees"]) && isset($_POST["event_desc"])
@@ -20,6 +20,8 @@ if (
                 ":event_desc" => $_POST["event_desc"]
             )
         );
+        $data = array("res" => "Event created successfully");        
+        echo json_encode($data);
     } catch (Exception $e) {
         echo "An error has occurred";
     }
