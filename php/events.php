@@ -1,6 +1,13 @@
 <?php
 include_once("./pdo.php");
 header('Content-Type: application/json; charset=utf-8');
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: PUT, GET, POST");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+
+$_POST = json_decode(file_get_contents('php://input'));
+echo $_POST;
+
 if (
     isset($_POST["event_name"]) && isset($_POST["date"]) && isset($_POST["event_location"]) && isset($_POST["vip_ticket_price"]) && isset($_POST["regular_ticket_price"])
     && isset($_POST["max_attendees"]) && isset($_POST["event_desc"])

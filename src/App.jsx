@@ -13,9 +13,38 @@ function App() {
     event_desc: "",
     date: "",
   });
-  const formSubmit = () => {};
+  const formSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const request = await fetch("http://localhost:8080/ticket-booking/php/events.php", {
+        method: "POST",        
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify(formData),
+      })
+      const response = await request.json();
+      console.log(response)
+      setFormData({
+        event_name: "",
+        event_location: "",
+        vip_ticket_price: "",
+        regular_ticket_price: "",
+        max_attendees: "",
+        event_desc: "",
+        date: "",
+      })
 
-  const formChange = (e) => {};
+    } catch (err) {
+      console.log(err)
+    }
+
+  };
+
+  const formChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => {
+      return { ...prevState, [name]: value };
+    });
+  };
   return (
     <>
       <form action="" onSubmit={formSubmit}>

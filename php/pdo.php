@@ -1,5 +1,5 @@
 <?php
-$dsn = "mysql:host=localhost;dbname=ticket-booking";
+$dsn = "mysql:host=localhost;dbname=ticket_booking";
 $user = "root";
 $password = "";
 
