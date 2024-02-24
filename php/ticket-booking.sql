@@ -8,7 +8,8 @@ CREATE TABLE event (
     vip_ticket_price DECIMAL NOT NULL,
     regular_ticket_price DECIMAL NOT NULL,
     max_attendees INTEGER,
-    event_desc VARCHAR(255)
+    event_desc VARCHAR(255),
+    date datetime
 );
 
 CREATE TABLE user (
