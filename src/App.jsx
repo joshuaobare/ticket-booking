@@ -4,6 +4,7 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import Login from "./components/Login"
 import UserHome from "./components/UserHome";
+import CreateEvent from "./components/CreateEvent"
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false)

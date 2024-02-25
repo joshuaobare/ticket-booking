@@ -9,9 +9,11 @@ $_POST = json_decode($data, true);
 try{
     $sql = "SELECT * FROM EVENT";
     $stmt = $pdo->query($sql);
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    $res = array("events"=> $row, "message" => "Successfully fetched all events");
+    $data = array();
+    while ($row = $stmt->fetch()) {
+        array_push($data, $row);
+    }
+    $res = array("events"=> $data, "message" => "Successfully fetched all events");
     echo json_encode($res);
 } catch (Exception $e) {
     echo "An error has occurred";

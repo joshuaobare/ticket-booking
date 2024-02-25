@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 function CreateEvent() {
   const [formData, setFormData] = useState({
     event_name: "",
@@ -112,3 +114,5 @@ function CreateEvent() {
     </>
   );
 }
+
+export default CreateEvent;
