@@ -6,6 +6,9 @@ const Login = ({ setLoggedIn }) => {
     email: "",
     password: "",
   });
+
+  const [loginError, setLoginError] = useState("")
+
   const formSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -25,6 +28,10 @@ const Login = ({ setLoggedIn }) => {
           email: "",
           password: "",
         });
+        setLoginError("")
+      }
+      if (response.error) {
+        setLoginError(response.error)
       }
     } catch (err) {
       console.log(err);
@@ -60,6 +67,7 @@ const Login = ({ setLoggedIn }) => {
             onChange={formChange}
           />
         </div>
+        <div>{loginError}</div>
         <button>Submit</button>
       </form>
     </div>
