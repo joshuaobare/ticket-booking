@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import EventCard from "./EventCard";
 
 const UserHome = () => {
   const [allEvents, setAllEvents] = useState([]);
@@ -11,13 +12,12 @@ const UserHome = () => {
           {
             method: "GET",
             headers: {
-              "Content-type": "application/json",              
+              "Content-type": "application/json",
             },
           }
         );
         const response = await request.json();
-        setAllEvents(response.events)
-        
+        setAllEvents(response.events);
       } catch (error) {
         console.log(error);
       }
@@ -25,18 +25,13 @@ const UserHome = () => {
     fetchEvents();
   }, []);
 
-  return (<div>
-    {allEvents.map((event)=> {
-        return (
-            <div key={event.event_id}>
-                <div>{event.event_name}</div>
-                <div>{event.date}</div>
-                <div>{event.event_location}</div>
-                <button>Book</button>
-            </div>
-        )
-    })}
-  </div>);
+  return (
+    <div>
+      {allEvents.map((event) => {
+        return <EventCard event={event} />;
+      })}
+    </div>
+  );
 };
 
 export default UserHome;
