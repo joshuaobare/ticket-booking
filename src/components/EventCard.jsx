@@ -1,8 +1,13 @@
 import poster from "../assets/randomposter.webp";
+import {format} from "date-fns"
 const EventCard = ({ event }) => {
   const style = {
     backgroundImage: `url(${poster})`,
   };
+
+  const dateHandler = (date) => {
+    formattedDate = new Date(date)
+  }
   
   return (
     <div key={event.event_id} className="event-card">
