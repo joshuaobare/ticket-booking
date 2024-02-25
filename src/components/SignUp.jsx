@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const SignUp = () => {
   const [formData, setFormData] = useState({
     first_name: "",
@@ -84,3 +86,5 @@ const SignUp = () => {
     </div>
   );
 };
+
+export default SignUp;
