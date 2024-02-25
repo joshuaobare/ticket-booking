@@ -6,7 +6,8 @@ import Login from "./components/Login"
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false)
-  return <Login setLoggedIn={setLoggedIn}/>;
+  const [isAdmin, setIsAdmin] = useState(false)
+  return <Login setLoggedIn={setLoggedIn} setIsAdmin={setIsAdmin}/>;
 }
 
 export default App;

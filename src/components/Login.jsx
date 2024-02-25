@@ -1,13 +1,13 @@
 import { useState } from "react";
 import "../App.css";
 
-const Login = ({ setLoggedIn }) => {
+const Login = ({ setLoggedIn, setIsAdmin }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
-  const [loginError, setLoginError] = useState("")
+  const [loginError, setLoginError] = useState("");
 
   const formSubmit = async (e) => {
     e.preventDefault();
@@ -24,14 +24,15 @@ const Login = ({ setLoggedIn }) => {
 
       if (response.message) {
         setLoggedIn(true);
+        setIsAdmin(response.user.isAdmin)
         setFormData({
           email: "",
           password: "",
         });
-        setLoginError("")
+        setLoginError("");
       }
       if (response.error) {
-        setLoginError(response.error)
+        setLoginError(response.error);
       }
     } catch (err) {
       console.log(err);
