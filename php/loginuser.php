@@ -12,7 +12,7 @@ if (
             $stmt = $pdo->prepare($sql);
             $stmt->execute(
                 array(                    
-                    ":email" => $_POST["email"]
+                    ":EMAIL" => $_POST["email"]
                 )
             );
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -25,6 +25,7 @@ if (
                     echo json_encode($res);
                 } else {
                     $res = array("error" => "Unsuccessful login");
+                    echo json_encode($res);
                 }
             }
             
