@@ -1,30 +1,30 @@
 .event-card {
     width: 320px;
-    height: 300px;
-    border: 1px black solid;
+    height: 300px;    
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .event-card-poster {
     height: 50%;
     width: 100%;
     background: no-repeat fixed center;
-    border-bottom: 1px black solid;
+    border-radius: 0.25rem;
 }
 .event-card-date {
     font-size: .75rem;
     font-weight: 500;
-    color: #797979;
-    
+    color: #797979;    
 }
 
-.event-card-name {
-    
+.event-card-name {    
     font-weight: 700;
     font-size: 1rem;
 }
 
 .event-card-price {
     font-size: .875rem;
-    font-weight: 700;
-    
+    font-weight: 700;    
+}
+
+.event-card-date,.event-card-name,.event-card-price  {
+    display: flex;    
 }
