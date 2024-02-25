@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../App.css";
-const Login = () => {
+
+const Login = ({ setLoggedIn }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -17,11 +18,14 @@ const Login = () => {
         }
       );
       const response = await request.json();
-      console.log(response);
-      setFormData({
-        email: "",
-        password: "",
-      });
+
+      if (response.message) {
+        setLoggedIn(true);
+        setFormData({
+          email: "",
+          password: "",
+        });
+      }
     } catch (err) {
       console.log(err);
     }
