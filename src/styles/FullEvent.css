@@ -111,3 +111,7 @@ tr >td {
     font-size: .825rem;
     padding-top: 5px;
 }
+
+.full-event-ticket-disclaimer-error {
+    color: red;
+}

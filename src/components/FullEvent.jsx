@@ -19,6 +19,7 @@ const FullEvent = ({ loggedIn }) => {
   const [ticketCount, setTicketCount] = useState({
     vip_tickets: 0,
     regular_tickets: 0,
+    availableCount: 0,
   });
 
   const fetchEvent = async () => {
@@ -56,7 +57,6 @@ const FullEvent = ({ loggedIn }) => {
           vip_ticket_price,
         });
       }
-      
     } catch (error) {
       console.log(error);
     }
@@ -67,7 +67,7 @@ const FullEvent = ({ loggedIn }) => {
   }, []);
 
   useEffect(() => {
-    const fetchTicketCount = async() => {
+    const fetchTicketCount = async () => {
       try {
         const request = await fetch(
           `http://localhost:8080/ticket-booking/php/ticketcounter.php?user_id=2&event_id=${eventData.event_id}`,
@@ -79,23 +79,24 @@ const FullEvent = ({ loggedIn }) => {
           }
         );
         const response = await request.json();
-        
+
         if (response.message) {
           setTicketCount({
-            vip_tickets: response.vip_tickets ,
-            regular_tickets: response.regular_tickets
-          })
+            vip_tickets: Number(response.vip_tickets),
+            regular_tickets: Number(response.regular_tickets),
+            availableCount:
+              5 - (Number(response.vip_tickets) + Number(response.regular_tickets)),
+          });
         }
       } catch (error) {
         console.log(error);
       }
-    }
+    };
     if (!loggedIn) {
-      fetchTicketCount()
+      fetchTicketCount();
     }
   }, [eventData]);
 
-  
   const dateHandler = (date) => {
     const dateObj = new Date(date);
     return `${format(dateObj, "EEE do MMMM")} at ${format(dateObj, "h:m aaa")}`;
@@ -142,7 +143,12 @@ const FullEvent = ({ loggedIn }) => {
                     id=""
                     className="ticket-table-select"
                     disabled={loggedIn}
-                  ></select>
+                  >
+                    {[...Array(ticketCount.availableCount).keys()].map(
+                        (num) => <option>{num + 1}</option>
+                      )
+                    }
+                  </select>
                 </td>
               </tr>
               <tr className="ticket-table-row">
@@ -157,13 +163,22 @@ const FullEvent = ({ loggedIn }) => {
                     id=""
                     className="ticket-table-select"
                     disabled={loggedIn}
-                  ></select>
+                  >
+                    {[...Array(ticketCount.availableCount).keys()].map(
+                        (num) => <option>{num + 1}</option>
+                      )
+                    }
+                  </select>
                 </td>
               </tr>
             </tbody>
           </table>
           <div className="full-event-ticket-disclaimer">
-            *You can only book upto 5 tickets
+            {ticketCount.availableCount === 0 ? (
+              <div className="full-event-ticket-disclaimer-error">You have exceeded the number of tickets you can book</div>
+            ) : (
+              <div>*You can only book upto 5 tickets</div>
+            )}
           </div>
           {loggedIn ? (
             <div>
