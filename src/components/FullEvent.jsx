@@ -68,23 +68,25 @@ const FullEvent = () => {
 
   return (
     <div className="full-event">
-      <img src={poster} alt="" className="full-event-poster" />
-      <div className="full-event-body">
-        <h1 className="full-event-body-header">{eventData.event_name}</h1>
-        <div className="full-event-body-date">
-          <span className="material-symbols-outlined">schedule</span>{" "}
-          {dateHandler(eventData.date)}
-        </div>
-        <div className="full-event-body-location">
-          {" "}
-          <span className="material-symbols-outlined">location_on</span>
-          {eventData.event_location}
-        </div>
-        <div className="full-event-body-prices">
-          {" "}
-          <span className="material-symbols-outlined">local_activity</span>
-          KShs. {eventData.regular_ticket_price} - KShs.
-          {eventData.vip_ticket_price}
+      <div className="full-event-cont">
+        <img src={poster} alt="" className="full-event-poster" />
+        <div className="full-event-body">
+          <h1 className="full-event-body-header">{eventData.event_name}</h1>
+          <div className="full-event-body-date">
+            <span className="material-symbols-outlined">schedule</span>{" "}
+            {dateHandler(eventData.date)}
+          </div>
+          <div className="full-event-body-location">
+            {" "}
+            <span className="material-symbols-outlined">location_on</span>
+            {eventData.event_location}
+          </div>
+          <div className="full-event-body-prices">
+            {" "}
+            <span className="material-symbols-outlined">local_activity</span>
+            KShs. {eventData.regular_ticket_price} - KShs.
+            {eventData.vip_ticket_price}
+          </div>
         </div>
       </div>
     </div>

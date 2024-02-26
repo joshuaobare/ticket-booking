@@ -1,6 +1,18 @@
 .full-event {
+    width: 100%;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    height: auto;
+}
+.full-event-cont {
+    margin-top: 20px;
     width: 740px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: .25rem;
 }
 
 .full-event-poster {
@@ -15,6 +27,7 @@
     flex-direction: column;
     align-items: baseline;
     padding: 10px;
+    background-color: #fff;
 }
 
 .full-event-body-header {
