@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import poster from "../assets/randomposter.webp";
 import { format } from "date-fns";
-import "../styles/FullEvent.css"
+import "../styles/FullEvent.css";
 
 const FullEvent = () => {
   const { id } = useParams();
@@ -30,7 +30,7 @@ const FullEvent = () => {
           }
         );
         const response = await request.json();
-          console.log(response)
+        console.log(response);
         if (response.event) {
           const {
             date,
@@ -53,7 +53,7 @@ const FullEvent = () => {
             vip_ticket_price,
           });
         }
-        console.log(eventData)
+        console.log(eventData);
       } catch (error) {
         console.log(error);
       }
@@ -63,20 +63,32 @@ const FullEvent = () => {
 
   const dateHandler = (date) => {
     const dateObj = new Date(date);
-    return `${format(dateObj, "EEE do MMMM")} at ${format(dateObj, "h:m aaa")}`
+    return `${format(dateObj, "EEE do MMMM")} at ${format(dateObj, "h:m aaa")}`;
   };
 
   return (
     <div className="full-event">
-        <img src={poster} alt="" className="full-event-poster"/>
-        <div className="full-event-body">
-            <h1 className="full-event-body-header">{eventData.event_name}</h1>
-            <div className="full-event-body-date">{dateHandler(eventData.date)}</div>
-            <div className="full-event-body-location">{eventData.event_location}</div>
-            <div className="full-event-body-prices">KShs. {eventData.regular_ticket_price} - KShs.{eventData.vip_ticket_price}</div>
+      <img src={poster} alt="" className="full-event-poster" />
+      <div className="full-event-body">
+        <h1 className="full-event-body-header">{eventData.event_name}</h1>
+        <div className="full-event-body-date">
+          <span className="material-symbols-outlined">schedule</span>{" "}
+          {dateHandler(eventData.date)}
         </div>
+        <div className="full-event-body-location">
+          {" "}
+          <span className="material-symbols-outlined">location_on</span>
+          {eventData.event_location}
+        </div>
+        <div className="full-event-body-prices">
+          {" "}
+          <span className="material-symbols-outlined">local_activity</span>
+          KShs. {eventData.regular_ticket_price} - KShs.
+          {eventData.vip_ticket_price}
+        </div>
+      </div>
     </div>
-  )
+  );
 };
 
 export default FullEvent;
