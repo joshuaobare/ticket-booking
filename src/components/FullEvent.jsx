@@ -87,6 +87,32 @@ const FullEvent = () => {
             KShs. {eventData.regular_ticket_price} - KShs.
             {eventData.vip_ticket_price}
           </div>
+          <div className="full-event-body-ticket-count">
+            Available Tickets: {eventData.max_attendees}
+          </div>
+        </div>
+        <div className="full-event-ticket">
+          <h1 className="full-event-body-header">Tickets</h1>
+          <table className="ticket-table">
+            <tbody>
+              <tr className="ticket-table-row">
+                <td className="ticket-table-heading">Regular Ticket</td>
+                <td>KShs. {eventData.regular_ticket_price}</td>
+                <td>
+                  <label htmlFor="">Qty</label>
+                  <select name="" id=""></select>
+                </td>
+              </tr>
+              <tr className="ticket-table-row">
+                <td className="ticket-table-heading">VIP Ticket</td>
+                <td>KShs. {eventData.vip_ticket_price}</td>
+                <td>
+                  <label htmlFor="">Qty</label>
+                  <select name="" id=""></select>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

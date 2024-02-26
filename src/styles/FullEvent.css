@@ -46,3 +46,25 @@
     margin-bottom: 1rem;
 
 }
+.full-event-body-ticket-count {
+    font-size: .9rem;
+}
+.full-event-ticket {
+    border-radius: .25rem;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    padding: 10px;
+}
+.ticket-table {
+    width: 100%;
+}
+.ticket-table-heading {
+    width: 50%;
+    text-align: left;
+    font-weight: 500;
+}
+.ticket-table-row {
+    
+}
