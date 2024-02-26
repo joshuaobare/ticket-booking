@@ -16,7 +16,8 @@ if (isset($_GET['id'])) {
         $res = array("message" => "Event fetched successfully", "event" => $row);
         echo json_encode($res);
     } catch (Exception $e) {
-        echo $e;
+        $res = array("error" => $e);
+        echo json_encode($res);
     }
 
 }

@@ -3,7 +3,16 @@ import { useParams } from "react-router-dom";
 
 const FullEvent = () => {
   const { id } = useParams();
-  const [eventData, setEventData] = useState({});
+  const [eventData, setEventData] = useState({
+    date: "",
+    event_desc: "",
+    event_id: "",
+    event_location: "",
+    event_name: "",
+    max_attendees: "",
+    regular_ticket_price: "",
+    vip_ticket_price: "",
+  });
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -17,10 +26,33 @@ const FullEvent = () => {
             },
           }
         );
-        const response = await request.json()
-        console.log(response)
+        const response = await request.json();
+          console.log(response)
+        if (response.event) {
+          const {
+            date,
+            event_desc,
+            event_id,
+            event_location,
+            event_name,
+            max_attendees,
+            regular_ticket_price,
+            vip_ticket_price,
+          } = response.event;
+          setEventData({
+            date,
+            event_desc,
+            event_id,
+            event_location,
+            event_name,
+            max_attendees,
+            regular_ticket_price,
+            vip_ticket_price,
+          });
+        }
+        console.log(eventData)
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     };
     fetchEvent();
