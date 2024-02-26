@@ -13,6 +13,7 @@
     flex-direction: column;
     gap: 10px;
     border-radius: .25rem;
+    margin-bottom: 20px;
 }
 
 .full-event-poster {

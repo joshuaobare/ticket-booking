@@ -190,7 +190,7 @@ const FullEvent = ({ loggedIn }) => {
                     onClick={() => incrementCount("regular_tickets")}
                   >
                     +
-                  </button>                  
+                  </button>
                 </td>
               </tr>
               <tr className="ticket-table-row">
@@ -209,7 +209,7 @@ const FullEvent = ({ loggedIn }) => {
                     onClick={() => incrementCount("vip_tickets")}
                   >
                     +
-                  </button>                  
+                  </button>
                 </td>
               </tr>
             </tbody>
@@ -232,6 +232,7 @@ const FullEvent = ({ loggedIn }) => {
             ""
           )}
         </div>
+        <button disabled={ticketCount.availableCount === 0}>Book</button>
       </div>
     </div>
   );
