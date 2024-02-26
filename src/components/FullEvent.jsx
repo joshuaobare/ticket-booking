@@ -162,10 +162,11 @@ const FullEvent = ({ loggedIn }) => {
                 <td className="ticket-table-heading">Regular Ticket</td>
                 <td>KShs. {eventData.regular_ticket_price}</td>
                 <td className="ticket-table-select-section">
-                  <label htmlFor="" className="ticket-table-label">
-                    Qty
-                  </label>
-                  <select
+                  
+                  <button>-</button>
+                  <div>{selectedTickets.vip_tickets}</div>
+                  <button>+</button>
+                  {/*<select
                     name="regular_tickets"
                     id="regular_tickets"
                     className="ticket-table-select"
@@ -177,17 +178,18 @@ const FullEvent = ({ loggedIn }) => {
                         <option value={num + 1}>{num + 1}</option>
                       )
                     )}
-                  </select>
+                      </select> */}
                 </td>
               </tr>
               <tr className="ticket-table-row">
                 <td className="ticket-table-heading">VIP Ticket</td>
                 <td>KShs. {eventData.vip_ticket_price}</td>
                 <td className="ticket-table-select-section">
-                  <label htmlFor="" className="ticket-table-label">
-                    Qty
-                  </label>
-                  <select
+                  
+                  <button>-</button>
+                  <div>{selectedTickets.vip_tickets}</div>
+                  <button>+</button>
+                  {/*<select
                     name="vip_tickets"
                     id="vip_tickets"
                     className="ticket-table-select"
@@ -199,7 +201,7 @@ const FullEvent = ({ loggedIn }) => {
                         <option value={num + 1}>{num + 1}</option>
                       )
                     )}
-                  </select>
+                      </select> */}
                 </td>
               </tr>
             </tbody>
