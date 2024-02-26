@@ -98,17 +98,17 @@ const FullEvent = () => {
               <tr className="ticket-table-row">
                 <td className="ticket-table-heading">Regular Ticket</td>
                 <td>KShs. {eventData.regular_ticket_price}</td>
-                <td>
-                  <label htmlFor="">Qty</label>
-                  <select name="" id=""></select>
+                <td className="ticket-table-select-section">
+                  <label htmlFor="" className="ticket-table-label">Qty</label>
+                  <select name="" id="" className="ticket-table-select"></select>
                 </td>
               </tr>
               <tr className="ticket-table-row">
                 <td className="ticket-table-heading">VIP Ticket</td>
                 <td>KShs. {eventData.vip_ticket_price}</td>
-                <td>
-                  <label htmlFor="">Qty</label>
-                  <select name="" id=""></select>
+                <td className="ticket-table-select-section">
+                  <label htmlFor="" className="ticket-table-label">Qty</label>
+                  <select name="" id="" className="ticket-table-select"></select>
                 </td>
               </tr>
             </tbody>
