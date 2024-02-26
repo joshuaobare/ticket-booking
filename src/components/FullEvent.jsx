@@ -4,7 +4,7 @@ import poster from "../assets/randomposter.webp";
 import { format } from "date-fns";
 import "../styles/FullEvent.css";
 
-const FullEvent = () => {
+const FullEvent = ({ loggedIn }) => {
   const { id } = useParams();
   const [eventData, setEventData] = useState({
     date: Date.now(),
@@ -21,50 +21,54 @@ const FullEvent = () => {
     regular_ticket: 0,
   });
 
-  useEffect(() => {
-    const fetchEvent = async () => {
-      try {
-        const request = await fetch(
-          `http://localhost:8080/ticket-booking/php/fetchevent.php?id=${id}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-type": "application/json",
-            },
-          }
-        );
-        const response = await request.json();
-        console.log(response);
-        if (response.event) {
-          const {
-            date,
-            event_desc,
-            event_id,
-            event_location,
-            event_name,
-            max_attendees,
-            regular_ticket_price,
-            vip_ticket_price,
-          } = response.event;
-          setEventData({
-            date,
-            event_desc,
-            event_id,
-            event_location,
-            event_name,
-            max_attendees,
-            regular_ticket_price,
-            vip_ticket_price,
-          });
+  const fetchEvent = async () => {
+    try {
+      const request = await fetch(
+        `http://localhost:8080/ticket-booking/php/fetchevent.php?id=${id}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-type": "application/json",
+          },
         }
-        console.log(eventData);
-      } catch (error) {
-        console.log(error);
+      );
+      const response = await request.json();
+
+      if (response.event) {
+        const {
+          date,
+          event_desc,
+          event_id,
+          event_location,
+          event_name,
+          max_attendees,
+          regular_ticket_price,
+          vip_ticket_price,
+        } = response.event;
+        setEventData({
+          date,
+          event_desc,
+          event_id,
+          event_location,
+          event_name,
+          max_attendees,
+          regular_ticket_price,
+          vip_ticket_price,
+        });
       }
-    };
+      console.log(eventData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
     fetchEvent();
   }, []);
 
+  useEffect(() => {}, [eventData]);
+
+  console.log(loggedIn)
   const dateHandler = (date) => {
     const dateObj = new Date(date);
     return `${format(dateObj, "EEE do MMMM")} at ${format(dateObj, "h:m aaa")}`;
@@ -110,6 +114,7 @@ const FullEvent = () => {
                     name=""
                     id=""
                     className="ticket-table-select"
+                    disabled={loggedIn}
                   ></select>
                 </td>
               </tr>
@@ -124,6 +129,7 @@ const FullEvent = () => {
                     name=""
                     id=""
                     className="ticket-table-select"
+                    disabled={loggedIn}
                   ></select>
                 </td>
               </tr>
@@ -132,6 +138,14 @@ const FullEvent = () => {
           <div className="full-event-ticket-disclaimer">
             *You can only book upto 5 tickets
           </div>
+          {!loggedIn ? (
+            <div>
+              <div>Please login to book tickets</div>
+              <button>Login</button>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </div>

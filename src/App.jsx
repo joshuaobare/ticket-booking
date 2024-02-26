@@ -23,7 +23,7 @@ function App() {
             exact
             element={isAdmin ? <AdminHome /> : <UserHome />}
           />
-          <Route path="/event/:id" exact element={<FullEvent />} />
+          <Route path="/event/:id" exact element={<FullEvent loggedIn={loggedIn} />} />
         </Routes>
       </BrowserRouter>
     </div>
