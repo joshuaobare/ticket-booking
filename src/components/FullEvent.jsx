@@ -22,6 +22,11 @@ const FullEvent = ({ loggedIn }) => {
     availableCount: 0,
   });
 
+  const [selectedTickets, setSelectedTickets] = useState({
+    vip_tickets: 0,
+    regular_tickets: 0,
+  });
+
   const fetchEvent = async () => {
     try {
       const request = await fetch(
@@ -70,7 +75,7 @@ const FullEvent = ({ loggedIn }) => {
     const fetchTicketCount = async () => {
       try {
         const request = await fetch(
-          `http://localhost:8080/ticket-booking/php/ticketcounter.php?user_id=2&event_id=${eventData.event_id}`,
+          `http://localhost:8080/ticket-booking/php/ticketcounter.php?user_id=1&event_id=${eventData.event_id}`,
           {
             method: "GET",
             headers: {
@@ -85,7 +90,11 @@ const FullEvent = ({ loggedIn }) => {
             vip_tickets: Number(response.vip_tickets),
             regular_tickets: Number(response.regular_tickets),
             availableCount:
-              5 - (Number(response.vip_tickets) + Number(response.regular_tickets)),
+              5 -
+              (Number(response.vip_tickets) +
+                Number(response.regular_tickets) +
+                selectedTickets.regular_tickets +
+                selectedTickets.vip_tickets),
           });
         }
       } catch (error) {
@@ -101,6 +110,24 @@ const FullEvent = ({ loggedIn }) => {
     const dateObj = new Date(date);
     return `${format(dateObj, "EEE do MMMM")} at ${format(dateObj, "h:m aaa")}`;
   };
+
+  const selectChange = (e) => {
+    setSelectedTickets(prevState => {
+      return {...selectedTickets, [e.target.name]: Number(e.target.value)}
+    })        
+  }
+
+  useEffect( () => {
+    setTicketCount(prevState => {
+      return {...prevState,availableCount: 5 -
+        (Number(ticketCount.vip_tickets) +
+          Number(ticketCount.regular_tickets) +
+          selectedTickets.regular_tickets +
+          selectedTickets.vip_tickets)}
+    })
+  },[selectedTickets])
+  //console.log(selectedTickets)
+  console.log(ticketCount.availableCount)
 
   return (
     <div className="full-event">
@@ -139,15 +166,17 @@ const FullEvent = ({ loggedIn }) => {
                     Qty
                   </label>
                   <select
-                    name=""
-                    id=""
+                    name="regular_tickets"
+                    id="regular_tickets"
                     className="ticket-table-select"
                     disabled={loggedIn}
+                    onChange={selectChange}
                   >
                     {[...Array(ticketCount.availableCount).keys()].map(
-                        (num) => <option>{num + 1}</option>
+                      (num) => (
+                        <option value={num + 1}>{num + 1}</option>
                       )
-                    }
+                    )}
                   </select>
                 </td>
               </tr>
@@ -159,15 +188,17 @@ const FullEvent = ({ loggedIn }) => {
                     Qty
                   </label>
                   <select
-                    name=""
-                    id=""
+                    name="vip_tickets"
+                    id="vip_tickets"
                     className="ticket-table-select"
                     disabled={loggedIn}
+                    onChange={selectChange}
                   >
                     {[...Array(ticketCount.availableCount).keys()].map(
-                        (num) => <option>{num + 1}</option>
+                      (num) => (
+                        <option value={num + 1}>{num + 1}</option>
                       )
-                    }
+                    )}
                   </select>
                 </td>
               </tr>
@@ -175,7 +206,9 @@ const FullEvent = ({ loggedIn }) => {
           </table>
           <div className="full-event-ticket-disclaimer">
             {ticketCount.availableCount === 0 ? (
-              <div className="full-event-ticket-disclaimer-error">You have exceeded the number of tickets you can book</div>
+              <div className="full-event-ticket-disclaimer-error">
+                You have exceeded the number of tickets you can book
+              </div>
             ) : (
               <div>*You can only book upto 5 tickets</div>
             )}
