@@ -145,6 +145,28 @@ const FullEvent = ({ loggedIn }) => {
     });
   };
 
+  const bookTickets = async () => {
+    try {
+      const request = await fetch(
+        "http://localhost:8080/ticket-booking/php/bookticket.php",
+        {
+          method: "POST",
+          body: JSON.stringify({ ...selectedTickets, event_id, user_id }),
+          headers: {
+            "Content-type": "application/json",
+          },
+        }
+      );
+      const response = await request.json();
+
+      if (response.message) {
+        fetchEvent();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="full-event">
       <div className="full-event-cont">
