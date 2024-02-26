@@ -106,3 +106,8 @@ tr >td {
     align-items: center;
     
 }
+
+.full-event-ticket-disclaimer {
+    font-size: .825rem;
+    padding-top: 5px;
+}

@@ -16,6 +16,10 @@ const FullEvent = () => {
     regular_ticket_price: "",
     vip_ticket_price: "",
   });
+  const [ticketCount, setTicketCount] = useState({
+    vip_ticket: 0,
+    regular_ticket: 0,
+  });
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -99,20 +103,35 @@ const FullEvent = () => {
                 <td className="ticket-table-heading">Regular Ticket</td>
                 <td>KShs. {eventData.regular_ticket_price}</td>
                 <td className="ticket-table-select-section">
-                  <label htmlFor="" className="ticket-table-label">Qty</label>
-                  <select name="" id="" className="ticket-table-select"></select>
+                  <label htmlFor="" className="ticket-table-label">
+                    Qty
+                  </label>
+                  <select
+                    name=""
+                    id=""
+                    className="ticket-table-select"
+                  ></select>
                 </td>
               </tr>
               <tr className="ticket-table-row">
                 <td className="ticket-table-heading">VIP Ticket</td>
                 <td>KShs. {eventData.vip_ticket_price}</td>
                 <td className="ticket-table-select-section">
-                  <label htmlFor="" className="ticket-table-label">Qty</label>
-                  <select name="" id="" className="ticket-table-select"></select>
+                  <label htmlFor="" className="ticket-table-label">
+                    Qty
+                  </label>
+                  <select
+                    name=""
+                    id=""
+                    className="ticket-table-select"
+                  ></select>
                 </td>
               </tr>
             </tbody>
           </table>
+          <div className="full-event-ticket-disclaimer">
+            *You can only book upto 5 tickets
+          </div>
         </div>
       </div>
     </div>
