@@ -112,22 +112,32 @@ const FullEvent = ({ loggedIn }) => {
   };
 
   const selectChange = (e) => {
-    setSelectedTickets(prevState => {
-      return {...selectedTickets, [e.target.name]: Number(e.target.value)}
-    })        
-  }
+    setSelectedTickets((prevState) => {
+      return { ...selectedTickets, [e.target.name]: Number(e.target.value) };
+    });
+  };
 
-  useEffect( () => {
-    setTicketCount(prevState => {
-      return {...prevState,availableCount: 5 -
-        (Number(ticketCount.vip_tickets) +
-          Number(ticketCount.regular_tickets) +
-          selectedTickets.regular_tickets +
-          selectedTickets.vip_tickets)}
-    })
-  },[selectedTickets])
+  useEffect(() => {
+    setTicketCount((prevState) => {
+      return {
+        ...prevState,
+        availableCount:
+          5 -
+          (Number(ticketCount.vip_tickets) +
+            Number(ticketCount.regular_tickets) +
+            selectedTickets.regular_tickets +
+            selectedTickets.vip_tickets),
+      };
+    });
+  }, [selectedTickets]);
   //console.log(selectedTickets)
-  console.log(ticketCount.availableCount)
+  console.log(selectedTickets);
+
+  const decrementCount = (ticketType) => {
+    setSelectedTickets((prevState) => {
+      return { ...prevState, [ticketType]: prevState[ticketType] - 1 };
+    });
+  };
 
   return (
     <div className="full-event">
@@ -162,9 +172,13 @@ const FullEvent = ({ loggedIn }) => {
                 <td className="ticket-table-heading">Regular Ticket</td>
                 <td>KShs. {eventData.regular_ticket_price}</td>
                 <td className="ticket-table-select-section">
-                  
-                  <button>-</button>
-                  <div>{selectedTickets.vip_tickets}</div>
+                  <button
+                    disabled={selectedTickets.regular_tickets === 0}
+                    onClick={() => decrementCount("regular_tickets")}
+                  >
+                    -
+                  </button>
+                  <div>{selectedTickets.regular_tickets}</div>
                   <button>+</button>
                   {/*<select
                     name="regular_tickets"
@@ -185,8 +199,12 @@ const FullEvent = ({ loggedIn }) => {
                 <td className="ticket-table-heading">VIP Ticket</td>
                 <td>KShs. {eventData.vip_ticket_price}</td>
                 <td className="ticket-table-select-section">
-                  
-                  <button>-</button>
+                  <button
+                    disabled={selectedTickets.vip_tickets === 0}
+                    onClick={() => decrementCount("vip_tickets")}
+                  >
+                    -
+                  </button>
                   <div>{selectedTickets.vip_tickets}</div>
                   <button>+</button>
                   {/*<select

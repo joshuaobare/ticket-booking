@@ -103,8 +103,7 @@ tr >td {
 }
 .ticket-table-select-section {
     display: flex;
-    align-items: center;
-    
+    align-items: center;    
 }
 
 .full-event-ticket-disclaimer {
