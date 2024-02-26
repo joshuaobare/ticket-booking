@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import poster from "../assets/randomposter.webp";
+import { format } from "date-fns";
 
 const FullEvent = () => {
   const { id } = useParams();
   const [eventData, setEventData] = useState({
-    date: "",
+    date: Date.now(),
     event_desc: "",
     event_id: "",
     event_location: "",
@@ -57,6 +59,23 @@ const FullEvent = () => {
     };
     fetchEvent();
   }, []);
+
+  const dateHandler = (date) => {
+    const dateObj = new Date(date);
+    return `${format(dateObj, "EEE do MMMM")} at ${format(dateObj, "h:m aaa")}`
+  };
+
+  return (
+    <div>
+        <img src={poster} alt="" />
+        <div>
+            <h1>{eventData.event_name}</h1>
+            <div>{dateHandler(eventData.date)}</div>
+            <div>{eventData.event_location}</div>
+            <div>KShs. {eventData.regular_ticket_price} - KShs.{eventData.vip_ticket_price}</div>
+        </div>
+    </div>
+  )
 };
 
 export default FullEvent;
