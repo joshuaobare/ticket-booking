@@ -36,7 +36,7 @@ if (isset($_GET['event_id']) && isset($_GET['user_id'])) {
                 $reg_count = $value;
             }
         }
-        $res = array("vip_count"=> $vip_count, "reg_count"=> $reg_count);
+        $res = array("vip_tickets"=> $vip_count, "regular_tickets"=> $reg_count, "message"=>"Counts successfully fetched");
         echo json_encode($res);
 
     } catch (Exception $e) {

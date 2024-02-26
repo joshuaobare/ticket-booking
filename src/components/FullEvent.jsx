@@ -17,8 +17,8 @@ const FullEvent = ({ loggedIn }) => {
     vip_ticket_price: "",
   });
   const [ticketCount, setTicketCount] = useState({
-    vip_ticket: 0,
-    regular_ticket: 0,
+    vip_tickets: 0,
+    regular_tickets: 0,
   });
 
   const fetchEvent = async () => {
@@ -56,7 +56,7 @@ const FullEvent = ({ loggedIn }) => {
           vip_ticket_price,
         });
       }
-      console.log(eventData);
+      
     } catch (error) {
       console.log(error);
     }
@@ -66,7 +66,34 @@ const FullEvent = ({ loggedIn }) => {
     fetchEvent();
   }, []);
 
-  useEffect(() => {}, [eventData]);
+  useEffect(() => {
+    const fetchTicketCount = async() => {
+      try {
+        const request = await fetch(
+          `http://localhost:8080/ticket-booking/php/ticketcounter.php?user_id=2&event_id=${eventData.event_id}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-type": "application/json",
+            },
+          }
+        );
+        const response = await request.json();
+        
+        if (response.message) {
+          setTicketCount({
+            vip_tickets: response.vip_tickets ,
+            regular_tickets: response.regular_tickets
+          })
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    if (!loggedIn) {
+      fetchTicketCount()
+    }
+  }, [eventData]);
 
   
   const dateHandler = (date) => {
