@@ -190,20 +190,7 @@ const FullEvent = ({ loggedIn }) => {
                     onClick={() => incrementCount("regular_tickets")}
                   >
                     +
-                  </button>
-                  {/*<select
-                    name="regular_tickets"
-                    id="regular_tickets"
-                    className="ticket-table-select"
-                    disabled={loggedIn}
-                    onChange={selectChange}
-                  >
-                    {[...Array(ticketCount.availableCount).keys()].map(
-                      (num) => (
-                        <option value={num + 1}>{num + 1}</option>
-                      )
-                    )}
-                      </select> */}
+                  </button>                  
                 </td>
               </tr>
               <tr className="ticket-table-row">
@@ -222,20 +209,7 @@ const FullEvent = ({ loggedIn }) => {
                     onClick={() => incrementCount("vip_tickets")}
                   >
                     +
-                  </button>
-                  {/*<select
-                    name="vip_tickets"
-                    id="vip_tickets"
-                    className="ticket-table-select"
-                    disabled={loggedIn}
-                    onChange={selectChange}
-                  >
-                    {[...Array(ticketCount.availableCount).keys()].map(
-                      (num) => (
-                        <option value={num + 1}>{num + 1}</option>
-                      )
-                    )}
-                      </select> */}
+                  </button>                  
                 </td>
               </tr>
             </tbody>
