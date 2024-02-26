@@ -10,7 +10,7 @@ try{
     $sql = "SELECT * FROM EVENT";
     $stmt = $pdo->query($sql);
     $data = array();
-    while ($row = $stmt->fetch()) {
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         array_push($data, $row);
     }
     $res = array("events"=> $data, "message" => "Successfully fetched all events");

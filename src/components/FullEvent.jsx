@@ -68,7 +68,7 @@ const FullEvent = ({ loggedIn }) => {
 
   useEffect(() => {}, [eventData]);
 
-  console.log(loggedIn)
+  
   const dateHandler = (date) => {
     const dateObj = new Date(date);
     return `${format(dateObj, "EEE do MMMM")} at ${format(dateObj, "h:m aaa")}`;
@@ -138,7 +138,7 @@ const FullEvent = ({ loggedIn }) => {
           <div className="full-event-ticket-disclaimer">
             *You can only book upto 5 tickets
           </div>
-          {!loggedIn ? (
+          {loggedIn ? (
             <div>
               <div>Please login to book tickets</div>
               <button>Login</button>
