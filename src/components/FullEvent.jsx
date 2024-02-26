@@ -139,6 +139,12 @@ const FullEvent = ({ loggedIn }) => {
     });
   };
 
+  const incrementCount = (ticketType) => {
+    setSelectedTickets((prevState) => {
+      return { ...prevState, [ticketType]: prevState[ticketType] + 1 };
+    });
+  };
+
   return (
     <div className="full-event">
       <div className="full-event-cont">
@@ -179,7 +185,12 @@ const FullEvent = ({ loggedIn }) => {
                     -
                   </button>
                   <div>{selectedTickets.regular_tickets}</div>
-                  <button>+</button>
+                  <button
+                    disabled={ticketCount.availableCount === 0}
+                    onClick={() => incrementCount("regular_tickets")}
+                  >
+                    +
+                  </button>
                   {/*<select
                     name="regular_tickets"
                     id="regular_tickets"
@@ -206,7 +217,12 @@ const FullEvent = ({ loggedIn }) => {
                     -
                   </button>
                   <div>{selectedTickets.vip_tickets}</div>
-                  <button>+</button>
+                  <button
+                    disabled={ticketCount.availableCount === 0}
+                    onClick={() => incrementCount("vip_tickets")}
+                  >
+                    +
+                  </button>
                   {/*<select
                     name="vip_tickets"
                     id="vip_tickets"
