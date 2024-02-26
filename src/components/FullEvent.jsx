@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import poster from "../assets/randomposter.webp";
 import { format } from "date-fns";
+import "../styles/FullEvent.css"
 
 const FullEvent = () => {
   const { id } = useParams();
@@ -66,13 +67,13 @@ const FullEvent = () => {
   };
 
   return (
-    <div>
-        <img src={poster} alt="" />
-        <div>
-            <h1>{eventData.event_name}</h1>
-            <div>{dateHandler(eventData.date)}</div>
-            <div>{eventData.event_location}</div>
-            <div>KShs. {eventData.regular_ticket_price} - KShs.{eventData.vip_ticket_price}</div>
+    <div className="full-event">
+        <img src={poster} alt="" className="full-event-poster"/>
+        <div className="full-event-body">
+            <h1 className="full-event-body-header">{eventData.event_name}</h1>
+            <div className="full-event-body-date">{dateHandler(eventData.date)}</div>
+            <div className="full-event-body-location">{eventData.event_location}</div>
+            <div className="full-event-body-prices">KShs. {eventData.regular_ticket_price} - KShs.{eventData.vip_ticket_price}</div>
         </div>
     </div>
   )
