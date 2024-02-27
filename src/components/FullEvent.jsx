@@ -6,7 +6,7 @@ import "../styles/FullEvent.css";
 
 const FullEvent = ({ loggedIn }) => {
   const { id } = useParams();
-  const [user_id, setUserId] = useState(null)
+  const [user_id, setUserId] = useState(null);
   const [eventData, setEventData] = useState({
     date: Date.now(),
     event_desc: "",
@@ -70,8 +70,8 @@ const FullEvent = ({ loggedIn }) => {
 
   useEffect(() => {
     fetchEvent();
-    if (localStorage.getItem("user_id")){
-      setUserId(localStorage.getItem("user_id"))
+    if (localStorage.getItem("user_id")) {
+      setUserId(localStorage.getItem("user_id"));
     }
   }, []);
 
@@ -155,7 +155,13 @@ const FullEvent = ({ loggedIn }) => {
         "http://localhost:8080/ticket-booking/php/bookticket.php",
         {
           method: "POST",
-          body: JSON.stringify({ ...selectedTickets, event_id, user_id }),
+          body: JSON.stringify({
+            ...selectedTickets,
+            event_id,
+            user_id,
+            regular_ticket_price: eventData.regular_ticket_price,
+            vip_ticket_price: eventData.vip_ticket_price,
+          }),
           headers: {
             "Content-type": "application/json",
           },

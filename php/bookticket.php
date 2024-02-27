@@ -22,7 +22,6 @@ function insertBooking($pdo, $event_id, $user_id, $ticket_price, $ticket_type) {
     } catch (Exception $e) {
         echo json_encode(array("error" => $e));
     }
-
 }
 
 if (isset($_POST["event_id"]) && isset($_POST["user_id"]) && (isset($_POST["vip_tickets"]) ||(isset($_POST["regular_tickets"]) ))){
@@ -32,8 +31,5 @@ if (isset($_POST["event_id"]) && isset($_POST["user_id"]) && (isset($_POST["vip_
     if (isset($_POST["regular_tickets"])) {
         
     }
-
-    if (isset($_POST["regular_tickets"]) && isset($_POST["vip_tickets"])) {
-
-    }
+    
 }
