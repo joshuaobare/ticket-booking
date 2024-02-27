@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import EventCard from "./EventCard";
 import { Link } from "react-router-dom";
-import "../styles/UserHome.css"
+import "../styles/UserHome.css";
 
 const UserHome = () => {
   const [allEvents, setAllEvents] = useState([]);
@@ -30,40 +30,45 @@ const UserHome = () => {
   return (
     <div className="UserHome">
       <div className="UserHome-cont">
-      <h1>All Events</h1>
-      <div></div>
-      <div className="UserHome-events-grid">
-        {allEvents.map((event) => {
-          return (
-            <Link to={`event/${event.event_id}`}>
-              <EventCard event={event} />
-            </Link>
-          );
-        })}
-        {allEvents.map((event) => {
-          return (
-            <Link to={`event/${event.event_id}`}>
-              <EventCard event={event} />
-            </Link>
-          );
-        })}
-        {allEvents.map((event) => {
-          return (
-            <Link to={`event/${event.event_id}`}>
-              <EventCard event={event} />
-            </Link>
-          );
-        })}
-        {allEvents.map((event) => {
-          return (
-            <Link to={`event/${event.event_id}`}>
-              <EventCard event={event} />
-            </Link>
-          );
-        })}
+        <h1>All Events</h1>
+        <div className="UserHome-event-count">
+          {allEvents.length} Event{allEvents.length === 1 ? "" : "s"}
+        </div>
+        {allEvents.length > 0 ? (
+          <div className="UserHome-events-grid">
+            {allEvents.map((event) => {
+              return (
+                <Link to={`event/${event.event_id}`}>
+                  <EventCard event={event} />
+                </Link>
+              );
+            })}
+            {allEvents.map((event) => {
+              return (
+                <Link to={`event/${event.event_id}`}>
+                  <EventCard event={event} />
+                </Link>
+              );
+            })}
+            {allEvents.map((event) => {
+              return (
+                <Link to={`event/${event.event_id}`}>
+                  <EventCard event={event} />
+                </Link>
+              );
+            })}
+            {allEvents.map((event) => {
+              return (
+                <Link to={`event/${event.event_id}`}>
+                  <EventCard event={event} />
+                </Link>
+              );
+            })}
+          </div>
+        ) : (
+          <div>There are no upcoming events. Please check again soon</div>
+        )}
       </div>
-      </div>
-      
     </div>
   );
 };
