@@ -6,7 +6,7 @@ import CreateEvent from "./CreateEvent";
 
 const UserHome = () => {
   const [allEvents, setAllEvents] = useState([]);
-  const [dialogOpen, SetDialogOpen] = useState(false)
+  const [dialogOpen, setDialogOpen] = useState(false)
   const [userData, setUserData] = useState({
     user_id: null,
     first_name: "",
@@ -67,13 +67,17 @@ const UserHome = () => {
     }
   }, []);
 
+  const dialogToggler = () => {
+    setDialogOpen(true)
+  }
+
   return (
     <div className="UserHome">
       <div className="UserHome-cont">
         <h1 className="UserHome-heading">All Events</h1>
         {userData.is_admin ? (
           <div className="UserHome-create-event-cont">
-            <button className="UserHome-create-event-btn">
+            <button className="UserHome-create-event-btn" onClick={dialogToggler}>
               <span className="material-symbols-outlined">calendar_add_on</span>
               Create Event
             </button>
@@ -119,6 +123,7 @@ const UserHome = () => {
           <div>There are no upcoming events. Please check again soon</div>
         )}
       </div>
+      <CreateEvent dialogOpen={dialogOpen} />
     </div>
   );
 };
