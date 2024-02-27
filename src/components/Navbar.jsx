@@ -7,6 +7,7 @@ const Navbar = () => {
     user_id: "",
     first_name: "",
     last_name: "",
+    email:"",
     is_admin: false,
   });
 
@@ -23,6 +24,7 @@ const Navbar = () => {
           }
         );
         const response = await request.json();
+        console.log(response)
       } catch (error) {
         console.log(error)
       }
