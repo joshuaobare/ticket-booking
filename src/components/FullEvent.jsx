@@ -6,6 +6,7 @@ import "../styles/FullEvent.css";
 
 const FullEvent = ({ loggedIn }) => {
   const { id } = useParams();
+  const [user_id, setUserId] = useState(null)
   const [eventData, setEventData] = useState({
     date: Date.now(),
     event_desc: "",
@@ -69,13 +70,16 @@ const FullEvent = ({ loggedIn }) => {
 
   useEffect(() => {
     fetchEvent();
+    if (localStorage.getItem("user_id")){
+      setUserId(localStorage.getItem("user_id"))
+    }
   }, []);
 
   useEffect(() => {
     const fetchTicketCount = async () => {
       try {
         const request = await fetch(
-          `http://localhost:8080/ticket-booking/php/ticketcounter.php?user_id=1&event_id=${eventData.event_id}`,
+          `http://localhost:8080/ticket-booking/php/ticketcounter.php?user_id=${user_id}&event_id=${eventData.event_id}`,
           {
             method: "GET",
             headers: {

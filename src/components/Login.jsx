@@ -30,6 +30,7 @@ const Login = ({ setLoggedIn, setIsAdmin }) => {
           password: "",
         });
         setLoginError("");
+        localStorage.setItem("user_id",response.user.user_id)
       }
       if (response.error) {
         setLoginError(response.error);
