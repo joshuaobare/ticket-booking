@@ -1,7 +1,8 @@
 import { useState } from "react";
 import "../styles/EventCard.css"
+import { Dialog } from "@mui/material";
 
-function CreateEvent() {
+function CreateEvent({dialogOpen}) {
   const [formData, setFormData] = useState({
     event_name: "",
     event_location: "",
@@ -45,7 +46,7 @@ function CreateEvent() {
     });
   };
   return (
-    <>
+    <Dialog open={dialogOpen}>
       <form action="" method="post" onSubmit={formSubmit}>
         <div>
           <label htmlFor="event_name">Name</label>
@@ -112,7 +113,7 @@ function CreateEvent() {
         </div>
         <button>Submit</button>
       </form>
-    </>
+    </Dialog >
   );
 }
 
