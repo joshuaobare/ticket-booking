@@ -69,7 +69,7 @@ const Navbar = () => {
       ) :  (
         <div className="navbar-right">
           <div className="navbar-link-cont">
-            <Link to="/login">
+            <Link to={`/profile/${userData.user_id}`}>
               <div>{`${userData.first_name} ${userData.last_name}`}</div>
             </Link>
           </div>

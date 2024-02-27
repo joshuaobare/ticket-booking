@@ -9,6 +9,7 @@ import FullEvent from "./components/FullEvent";
 import AdminHome from "./components/AdminHome";
 import SignUp from "./components/SignUp"
 import Navbar from "./components/Navbar";
+import Profile from "./components/Profile";
 import { HashRouter, BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           <Route path="/event/:id" exact element={<FullEvent loggedIn={loggedIn} />} />
           <Route path="/login" exact element = {<Login />}/>
           <Route path="/signup" exact element = {<SignUp />}/>
+          <Route path="/profile/:id" exact element = {<Profile />}/>
         
         </Routes>
       </BrowserRouter>
