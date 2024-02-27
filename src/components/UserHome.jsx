@@ -30,7 +30,7 @@ const UserHome = () => {
   return (
     <div className="UserHome">
       <div className="UserHome-cont">
-        <h1>All Events</h1>
+        <h1 className="UserHome-heading">All Events</h1>
         <div className="UserHome-event-count">
           {allEvents.length} Event{allEvents.length === 1 ? "" : "s"}
         </div>
