@@ -1,6 +1,21 @@
 .UserHome {    
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.UserHome-cont {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 52vw;
+}
+.UserHome-events-grid {
+    
+    display: flex;
+    margin: auto;
+    gap: 1.125rem;
+    row-gap: 2.375rem;
+    flex-flow: row wrap;
 }

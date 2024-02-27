@@ -29,8 +29,17 @@ const UserHome = () => {
 
   return (
     <div className="UserHome">
+      <div className="UserHome-cont">
       <h1>All Events</h1>
-      <div>
+      <div></div>
+      <div className="UserHome-events-grid">
+        {allEvents.map((event) => {
+          return (
+            <Link to={`event/${event.event_id}`}>
+              <EventCard event={event} />
+            </Link>
+          );
+        })}
         {allEvents.map((event) => {
           return (
             <Link to={`event/${event.event_id}`}>
@@ -39,6 +48,8 @@ const UserHome = () => {
           );
         })}
       </div>
+      </div>
+      
     </div>
   );
 };
