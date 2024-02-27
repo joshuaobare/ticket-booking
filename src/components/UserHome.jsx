@@ -47,6 +47,20 @@ const UserHome = () => {
             </Link>
           );
         })}
+        {allEvents.map((event) => {
+          return (
+            <Link to={`event/${event.event_id}`}>
+              <EventCard event={event} />
+            </Link>
+          );
+        })}
+        {allEvents.map((event) => {
+          return (
+            <Link to={`event/${event.event_id}`}>
+              <EventCard event={event} />
+            </Link>
+          );
+        })}
       </div>
       </div>
       

@@ -28,3 +28,7 @@
 .event-card-date,.event-card-name,.event-card-price  {
     display: flex;    
 }
+
+.event-card-book-btn {
+    margin-top: 20px;
+}

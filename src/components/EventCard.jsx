@@ -11,7 +11,7 @@ const EventCard = ({ event }) => {
   };
 
   return (
-    <div key={event.event_id} className="event-card">
+    <div key={event.event_id} className="event-card">      
       <div className="event-card-poster" style={style}></div>
       <div className="event-card-date">{dateHandler(event.date)}</div>
       <div className="event-card-name">{event.event_name}</div>
@@ -19,7 +19,7 @@ const EventCard = ({ event }) => {
       <div className="event-card-price">
         KShs. {event.regular_ticket_price} - KShs.{event.vip_ticket_price}
       </div>
-      <button>Book</button>
+      <button className="event-card-book-btn">Book</button>
     </div>
   );
 };
