@@ -94,7 +94,7 @@ const FullEvent = ({ loggedIn }) => {
             vip_tickets: Number(response.vip_tickets),
             regular_tickets: Number(response.regular_tickets),
             availableCount:
-              5 -
+              6 -
               (Number(response.vip_tickets) +
                 Number(response.regular_tickets) +
                 selectedTickets.regular_tickets +
@@ -126,7 +126,7 @@ const FullEvent = ({ loggedIn }) => {
       return {
         ...prevState,
         availableCount:
-          5 -
+          6 -
           (Number(ticketCount.vip_tickets) +
             Number(ticketCount.regular_tickets) +
             selectedTickets.regular_tickets +
@@ -151,13 +151,20 @@ const FullEvent = ({ loggedIn }) => {
 
   const bookTickets = async () => {
     try {
+      console.log({
+        ...selectedTickets,
+        event_id: eventData.event_id,
+        user_id,
+        regular_ticket_price: eventData.regular_ticket_price,
+        vip_ticket_price: eventData.vip_ticket_price,
+      })
       const request = await fetch(
         "http://localhost:8080/ticket-booking/php/bookticket.php",
         {
           method: "POST",
           body: JSON.stringify({
             ...selectedTickets,
-            event_id,
+            event_id: eventData.event_id,
             user_id,
             regular_ticket_price: eventData.regular_ticket_price,
             vip_ticket_price: eventData.vip_ticket_price,
@@ -168,8 +175,9 @@ const FullEvent = ({ loggedIn }) => {
         }
       );
       const response = await request.json();
+      console.log(response);
 
-      if (response.message) {
+      if (response.res) {
         fetchEvent();
       }
     } catch (error) {
@@ -264,7 +272,12 @@ const FullEvent = ({ loggedIn }) => {
             ""
           )}
         </div>
-        <button disabled={ticketCount.availableCount === 0}>Book</button>
+        <button
+          disabled={ticketCount.availableCount === 0}
+          onClick={bookTickets}
+        >
+          Book
+        </button>
       </div>
     </div>
   );

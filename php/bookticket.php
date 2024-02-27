@@ -34,6 +34,7 @@ function insertBooking($pdo, $event_id, $user_id, $ticket_price, $ticket_type) {
         ) 
         ));
     $data = array("res" => "Booking made successfully"); 
+    global $res;
     array_push($res, $data);
     decrementAvailableTickets($pdo, $event_id);    
     #echo json_encode($data);
