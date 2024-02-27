@@ -7,6 +7,7 @@ import UserHome from "./components/UserHome";
 import CreateEvent from "./components/CreateEvent";
 import FullEvent from "./components/FullEvent";
 import AdminHome from "./components/AdminHome";
+import SignUp from "./components/SignUp"
 import Navbar from "./components/Navbar";
 import { HashRouter, BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -16,8 +17,9 @@ function App() {
   return (
     <div className="App">
       {/* <Login setLoggedIn={setLoggedIn} setIsAdmin={setIsAdmin}/> */}
-      <Navbar />
+      
       <BrowserRouter basename="/">
+      <Navbar />
         <Routes>
           <Route
             path="/"
@@ -25,6 +27,9 @@ function App() {
             element={isAdmin ? <AdminHome /> : <UserHome />}
           />
           <Route path="/event/:id" exact element={<FullEvent loggedIn={loggedIn} />} />
+          <Route path="/login" exact element = {<Login />}/>
+          <Route path="/signup" exact element = {<SignUp />}/>
+        
         </Routes>
       </BrowserRouter>
     </div>
