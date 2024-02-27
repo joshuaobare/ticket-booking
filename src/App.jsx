@@ -7,6 +7,7 @@ import UserHome from "./components/UserHome";
 import CreateEvent from "./components/CreateEvent";
 import FullEvent from "./components/FullEvent";
 import AdminHome from "./components/AdminHome";
+import Navbar from "./components/Navbar";
 import { HashRouter, BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
   return (
     <div className="App">
       {/* <Login setLoggedIn={setLoggedIn} setIsAdmin={setIsAdmin}/> */}
-
+      <Navbar />
       <BrowserRouter basename="/">
         <Routes>
           <Route
