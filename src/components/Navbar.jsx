@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [userData, setUserData] = useState({
-    user_id: "",
+    user_id: null,
     first_name: "",
     last_name: "",
     email: "",
@@ -50,21 +50,31 @@ const Navbar = () => {
         <Link to="/">TICKETFLOW</Link>
       </div>
       <div className="navbar-mid"></div>
-      <div className="navbar-right">
-        <div className="navbar-link-cont">
-          <Link to="/login">
-            <div>Sign In</div>
-          </Link>
+      {!userData.user_id ? (
+        <div className="navbar-right">
+          <div className="navbar-link-cont">
+            <Link to="/login">
+              <div>Sign In</div>
+            </Link>
+          </div>
+          <div className="navbar-link-cont">
+            <Link to="/signup">
+              <div>Register</div>
+            </Link>
+          </div>
+          <div className="navbar-link-cont">
+            <button>Admin</button>
+          </div>
         </div>
-        <div className="navbar-link-cont">
-          <Link to="/signup">
-            <div>Register</div>
-          </Link>
+      ) :  (
+        <div className="navbar-right">
+          <div className="navbar-link-cont">
+            <Link to="/login">
+              <div>{`${userData.first_name} ${userData.last_name}`}</div>
+            </Link>
+          </div>
         </div>
-        <div className="navbar-link-cont">
-          <button>Admin</button>
-        </div>
-      </div>
+      ) }
     </nav>
   );
 };
