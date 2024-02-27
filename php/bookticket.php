@@ -65,6 +65,6 @@ if (isset($_POST["event_id"]) && isset($_POST["user_id"]) && isset($_POST['regul
         }       
         
     }
-    echo json_encode($res);
+    echo json_encode(array("message" => $res));
     
 }

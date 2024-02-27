@@ -7,6 +7,7 @@ import "../styles/FullEvent.css";
 const FullEvent = ({ loggedIn }) => {
   const { id } = useParams();
   const [user_id, setUserId] = useState(null);
+  const [bookingSuccessful, setBookingSuccessful] = useState(false)
   const [eventData, setEventData] = useState({
     date: Date.now(),
     event_desc: "",
@@ -177,8 +178,12 @@ const FullEvent = ({ loggedIn }) => {
       const response = await request.json();
       console.log(response);
 
-      if (response.res) {
+      if (response.message.length > 0) {
         fetchEvent();
+        setSelectedTickets({
+          vip_tickets: 0,
+          regular_tickets: 0,
+        })
       }
     } catch (error) {
       console.log(error);
