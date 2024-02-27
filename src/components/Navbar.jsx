@@ -7,7 +7,7 @@ const Navbar = () => {
     user_id: "",
     first_name: "",
     last_name: "",
-    email:"",
+    email: "",
     is_admin: false,
   });
 
@@ -24,9 +24,18 @@ const Navbar = () => {
           }
         );
         const response = await request.json();
-        console.log(response)
+
+        if (response.user) {
+          setUserData({
+            user_id: response.user.user_id,
+            first_name: response.user.first_name,
+            last_name: response.user.last_name,
+            email: response.user.email,
+            is_admin: response.user.is_admin === "1" ? true : false,
+          });
+        }
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     };
 
