@@ -6,6 +6,21 @@ $data = file_get_contents('php://input');
 $_POST = json_decode($data, true);
 $res = array();
 
+function decrementAvailableTickets($pdo, $event_id) {
+    try {
+    $sql = "UPDATE EVENT SET MAX_ATTENDEES = MAX_ATTENDEES - 1 WHERE EVENT_ID = :EVENT_ID AND MAX_ATTENDEES >0";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(
+        array(
+            ":EVENT_ID" => $event_id
+        )
+        );
+    } catch (Exception $e) {
+        echo json_encode(array("error" => $e));
+    }
+    
+}
+
 function insertBooking($pdo, $event_id, $user_id, $ticket_price, $ticket_type) {  
     try {
        $sql = "INSERT INTO TICKETING (EVENT_ID, USER_ID, TICKET_PRICE, TICKET_TYPE) VALUES (:EVENT_ID, :USER_ID, :TICKET_PRICE, :TICKET_TYPE)";
@@ -19,16 +34,13 @@ function insertBooking($pdo, $event_id, $user_id, $ticket_price, $ticket_type) {
         ) 
         ));
     $data = array("res" => "Booking made successfully"); 
-    array_push($res, $data);    
+    array_push($res, $data);
+    decrementAvailableTickets($pdo, $event_id);    
     #echo json_encode($data);
     } catch (Exception $e) {
         #array_push($res, $data);
         echo json_encode(array("error" => $e));
     }
-}
-
-function decrementAvailableTickets() {
-
 }
 
 if (isset($_POST["event_id"]) && isset($_POST["user_id"]) && isset($_POST['regular_ticket_price']) && isset($_POST['vip_ticket_price']) && (isset($_POST["vip_tickets"])  ||(isset($_POST["regular_tickets"]) ))){
