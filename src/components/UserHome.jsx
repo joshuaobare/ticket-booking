@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import EventCard from "./EventCard";
 import { Link } from "react-router-dom";
+import "../styles/UserHome.css"
 
 const UserHome = () => {
   const [allEvents, setAllEvents] = useState([]);
@@ -27,10 +28,17 @@ const UserHome = () => {
   }, []);
 
   return (
-    <div>
-      {allEvents.map((event) => {
-        return <Link to={`event/${event.event_id}`}><EventCard event={event} /></Link>;
-      })}
+    <div className="UserHome">
+      <h1>All Events</h1>
+      <div>
+        {allEvents.map((event) => {
+          return (
+            <Link to={`event/${event.event_id}`}>
+              <EventCard event={event} />
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 };
