@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import EventCard from "./EventCard";
 import { Link } from "react-router-dom";
 import "../styles/UserHome.css";
+import CreateEvent from "./CreateEvent";
 
 const UserHome = () => {
   const [allEvents, setAllEvents] = useState([]);
+  const [dialogOpen, SetDialogOpen] = useState(false)
   const [userData, setUserData] = useState({
     user_id: null,
     first_name: "",
