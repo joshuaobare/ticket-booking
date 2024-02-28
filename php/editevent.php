@@ -11,8 +11,7 @@ if (
     && isset($_PUT["max_attendees"]) && isset($_PUT["event_desc"]) && isset($_PUT["image"])
 ) {
     try {
-        $sql = "INSERT INTO EVENT (event_name, date, event_location, vip_ticket_price,regular_ticket_price,max_attendees,event_desc, image) 
-				VALUES(:event_name, :date, :event_location, :vip_ticket_price,:regular_ticket_price,:max_attendees,:event_desc, :image)";
+        $sql = "UPDATE EVENT SET event_name = :event_name, date = :date, event_location=:event_location, vip_ticket_price=:vip_ticket_price ,regular_ticket_price=:regular_ticket_price ,max_attendees = :max_attendees,event_desc =:event_desc, image = :image WHERE event_id = :event_id";
         $stmt = $pdo->prepare($sql);
         
         $stmt->execute(

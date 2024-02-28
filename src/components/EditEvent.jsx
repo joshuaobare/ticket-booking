@@ -3,8 +3,15 @@ import "../styles/EventCard.css";
 import { Dialog } from "@mui/material";
 import "../styles/CreateEvent.css";
 import { Close } from "@mui/icons-material";
+import blackbg from "../assets/blackbg.jpg";
 
-function EditEvent({ dialogOpen, dialogToggler, fetchEvent, eventData }) {
+function EditEvent({
+  dialogOpen,
+  dialogToggler,
+  fetchEvent,
+  eventData,
+  event_id,
+}) {
   const [formData, setFormData] = useState({
     event_name: "",
     event_location: "",
@@ -12,22 +19,22 @@ function EditEvent({ dialogOpen, dialogToggler, fetchEvent, eventData }) {
     regular_ticket_price: "",
     max_attendees: "",
     event_desc: "",
-    date: "",        
+    date: "",
   });
-  const [image, setImage] = useState("")
+  const [image, setImage] = useState("");
 
   useEffect(() => {
     setFormData({
-        event_name: eventData.event_name,
-        event_location: eventData.event_location,
-        vip_ticket_price: eventData.vip_ticket_price,
-        regular_ticket_price: eventData.regular_ticket_price,
-        max_attendees: eventData.max_attendees,
-        event_desc: eventData.event_desc,
-        date: eventData.date,    
-      })
-      setImage(eventData.image)
-  }, [])
+      event_name: eventData.event_name,
+      event_location: eventData.event_location,
+      vip_ticket_price: eventData.vip_ticket_price,
+      regular_ticket_price: eventData.regular_ticket_price,
+      max_attendees: eventData.max_attendees,
+      event_desc: eventData.event_desc,
+      date: eventData.date,
+    });
+    setImage(eventData.image || blackbg);
+  }, []);
 
   function convertToBase64(file) {
     return new Promise((resolve, reject) => {
@@ -43,22 +50,22 @@ function EditEvent({ dialogOpen, dialogToggler, fetchEvent, eventData }) {
   }
   const handleImage = async (e) => {
     setImage(await convertToBase64(e.target.files[0]));
-  }
+  };
 
   const formSubmit = async (e) => {
     e.preventDefault();
     console.log(JSON.stringify(formData));
     try {
       const request = await fetch(
-        "http://localhost:8080/ticket-booking/php/events.php",
+        "http://localhost:8080/ticket-booking/php/editevent.php",
         {
           method: "PUT",
           headers: { "Content-type": "application/json" },
-          body: JSON.stringify({...formData, image}),
+          body: JSON.stringify({ ...formData, image, event_id }),
         }
       );
       const response = await request.json();
-      
+
       if (response.message) {
         setFormData({
           event_name: "",
@@ -67,18 +74,17 @@ function EditEvent({ dialogOpen, dialogToggler, fetchEvent, eventData }) {
           regular_ticket_price: "",
           max_attendees: "",
           event_desc: "",
-          date: "",        
+          date: "",
         });
-        setImage("")
-        fetchEvent()
-        dialogToggler()
+        setImage("");
+        fetchEvent();
+        dialogToggler();
       }
-      
     } catch (err) {
       console.log(err);
     }
   };
-  
+
   const formChange = (e) => {
     const { name, value, type, files } = e.target;
 
@@ -196,7 +202,7 @@ function EditEvent({ dialogOpen, dialogToggler, fetchEvent, eventData }) {
             type="file"
             name="image"
             accept=".jpg, .png, .jpeg, .gif"
-            onChange={handleImage}            
+            onChange={handleImage}
           />
         </div>
         <div className="create-event-form-item">

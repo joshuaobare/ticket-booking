@@ -342,6 +342,7 @@ const FullEvent = ({ loggedIn }) => {
         dialogOpen={editDialogOpen}
         dialogToggler={editDialogToggler}
         fetchEvent={fetchEvent}
+        event_id = {id}
       />
     </div>
   );
