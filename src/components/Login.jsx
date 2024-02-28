@@ -73,6 +73,7 @@ const Login = ({ setLoggedIn, setIsAdmin }) => {
             className="login-form-input"
           />
         </div>
+        <div className="login-form-forgot-pass">Forgot Password ?</div>
         <div>{loginError}</div>
         <button className="login-form-submit-btn">Submit</button>
       </form>

@@ -25,9 +25,14 @@
     padding:1.125rem 1rem;
     font-size: 1rem;
 }
+
+.login-form-forgot-pass {
+    text-align: left;
+    font-size: .825rem;
+}
 .login-form-submit-btn {
     background-color: black;
     color: white;
-    margin-top: 10px;
+    /* margin-top: 5px; */
     padding:1.125rem 1rem;
 }
