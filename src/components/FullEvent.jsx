@@ -124,13 +124,16 @@ const FullEvent = ({ loggedIn }) => {
         `http://localhost:8080/ticket-booking/php/deleteevent.php?id=${id}`,
         {
           method: "DELETE",
+          body: JSON.stringify({id}),
           headers: {
             "Content-type": "application/json",
           },
+          
         }
       );
 
       if (response.message) {
+        deleteDialogToggler()
         navigate("/");
       }
       const response = request.json();
@@ -375,6 +378,7 @@ const FullEvent = ({ loggedIn }) => {
       <DeleteEvent
         dialogOpen={deleteDialogOpen}
         dialogToggler={deleteDialogToggler}
+        deleteEvent ={deleteEvent}
       />
     </div>
   );
