@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../styles/SignUp.css"
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -39,42 +40,47 @@ const SignUp = () => {
   };
 
   return (
-    <div>
-      <form action="" method="post" onSubmit={formSubmit}>
-        <div>
-          <label htmlFor="first_name">First Name</label>
+    <div className="signup">
+      <h1>Register</h1>
+      <form action="" method="post" onSubmit={formSubmit} className="signup-form">        
+        <div className="signup-form-item">
+          <label htmlFor="first_name" className="signup-form-item-label">First Name</label>
           <input
             type="text"
             id="first_name"
             name="first_name"
             onChange={formChange}
+            className="signup-form-item-input"
             value={formData.first_name}
           />
         </div>
-        <div>
-          <label htmlFor="last_name">Last Name</label>
+        <div className="signup-form-item">
+          <label htmlFor="last_name" className="signup-form-item-label">Last Name</label>
           <input
             type="text"
             name="last_name"
             id="last_name"
+            className="signup-form-item-input"
             onChange={formChange}
             value={formData.last_name}
           />
         </div>
-        <div>
-          <label htmlFor="email">Email</label>
+        <div className="signup-form-item">
+          <label htmlFor="email" className="signup-form-item-label">Email</label>
           <input
             type="email"
             name="email"
             id="email"
+            className="signup-form-item-input"
             onChange={formChange}
             value={formData.email}
           />
         </div>
-        <div>
-          <label htmlFor="password">Password</label>
+        <div className="signup-form-item">
+          <label htmlFor="password" className="signup-form-item-label">Password</label>
           <input
             type="password"
+            className="signup-form-item-input"
             name="password"
             id="password"
             onChange={formChange}
