@@ -8,7 +8,7 @@ $_PUT = json_decode($data, true);
 
 if (
     isset($_PUT["event_name"]) && isset($_PUT["date"]) && isset($_PUT["event_location"]) && isset($_PUT["vip_ticket_price"]) && isset($_PUT["regular_ticket_price"])
-    && isset($_PUT["max_attendees"]) && isset($_PUT["event_desc"]) && isset($_PUT["image"])
+    && isset($_PUT["max_attendees"]) && isset($_PUT["event_id"])&& isset($_PUT["event_desc"]) && isset($_PUT["image"])
 ) {
     try {
         $sql = "UPDATE EVENT SET event_name = :event_name, date = :date, event_location=:event_location, vip_ticket_price=:vip_ticket_price ,regular_ticket_price=:regular_ticket_price ,max_attendees = :max_attendees,event_desc =:event_desc, image = :image WHERE event_id = :event_id";
@@ -16,6 +16,7 @@ if (
         
         $stmt->execute(
             array(
+                ":event_id" => $_PUT["event_id"] ,
                 ":event_name" => $_PUT["event_name"] , 
                 ":date" => $_PUT["date"] , 
                 ":event_location" => $_PUT["event_location"], 

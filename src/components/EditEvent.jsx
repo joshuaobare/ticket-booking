@@ -13,14 +13,14 @@ function EditEvent({
   event_id,
 }) {
   const [formData, setFormData] = useState({
-    event_name: "",
-    event_location: "",
-    vip_ticket_price: "",
-    regular_ticket_price: "",
-    max_attendees: "",
-    event_desc: "",
-    date: "",
-  });
+      event_name: eventData.event_name,
+      event_location: eventData.event_location,
+      vip_ticket_price: eventData.vip_ticket_price,
+      regular_ticket_price: eventData.regular_ticket_price,
+      max_attendees: eventData.max_attendees,
+      event_desc: eventData.event_desc,
+      date: eventData.date,
+    });
   const [image, setImage] = useState("");
 
   useEffect(() => {
@@ -34,7 +34,7 @@ function EditEvent({
       date: eventData.date,
     });
     setImage(eventData.image || blackbg);
-  }, []);
+  }, [eventData]);
 
   function convertToBase64(file) {
     return new Promise((resolve, reject) => {
