@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../App.css";
+import "../styles/Login.css"
 
 const Login = ({ setLoggedIn, setIsAdmin }) => {
   const [formData, setFormData] = useState({
@@ -47,30 +48,33 @@ const Login = ({ setLoggedIn, setIsAdmin }) => {
     });
   };
   return (
-    <div>
-      <form action="" method="post" onSubmit={formSubmit}>
-        <div>
-          <label htmlFor="email">Email</label>
+    <div className="login">
+      <h1>Sign in</h1>
+      <form action="" method="post" onSubmit={formSubmit} className="login-form">
+        <div className="login-form-item">
+          <label htmlFor="email" className="login-form-label">Email</label>
           <input
             type="email"
             name="email"
             id="email"
             value={formData.email}
             onChange={formChange}
+            className="login-form-input"
           />
         </div>
-        <div>
-          <label htmlFor="password">Password</label>
+        <div className="login-form-item">
+          <label htmlFor="password" className="login-form-label">Password</label>
           <input
             type="password"
             name="password"
             id="password"
             value={formData.password}
             onChange={formChange}
+            className="login-form-input"
           />
         </div>
         <div>{loginError}</div>
-        <button>Submit</button>
+        <button className="login-form-submit-btn">Submit</button>
       </form>
     </div>
   );
