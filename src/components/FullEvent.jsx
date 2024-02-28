@@ -5,8 +5,15 @@ import { format } from "date-fns";
 import "../styles/FullEvent.css";
 
 const FullEvent = ({ loggedIn }) => {
-  const { id } = useParams();
+  const { id } = useParams();  
   const [user_id, setUserId] = useState(null);
+  const [userData, setUserData] = useState({
+    user_id: null,
+    first_name: "",
+    last_name: "",
+    email: "",
+    is_admin: false,
+  })
   const [bookingSuccessful, setBookingSuccessful] = useState(false)
   const [eventData, setEventData] = useState({
     date: Date.now(),
@@ -29,6 +36,33 @@ const FullEvent = ({ loggedIn }) => {
     vip_tickets: 0,
     regular_tickets: 0,
   });
+
+  const userVerification = async (user_id) => {
+    try {
+      const request = await fetch(
+        `http://localhost:8080/ticket-booking/php/fetchuser.php?id=${user_id}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-type": "application/json",
+          },
+        }
+      );
+      const response = await request.json();
+
+      if (response.user) {
+        setUserData({
+          user_id: response.user.user_id,
+          first_name: response.user.first_name,
+          last_name: response.user.last_name,
+          email: response.user.email,
+          is_admin: response.user.is_admin === "1" ? true : false,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const fetchEvent = async () => {
     try {
@@ -154,14 +188,7 @@ const FullEvent = ({ loggedIn }) => {
   };
 
   const bookTickets = async () => {
-    try {
-      console.log({
-        ...selectedTickets,
-        event_id: eventData.event_id,
-        user_id,
-        regular_ticket_price: eventData.regular_ticket_price,
-        vip_ticket_price: eventData.vip_ticket_price,
-      })
+    try {      
       const request = await fetch(
         "http://localhost:8080/ticket-booking/php/bookticket.php",
         {
