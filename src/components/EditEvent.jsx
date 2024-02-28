@@ -52,7 +52,7 @@ function EditEvent({ dialogOpen, dialogToggler, fetchEvent, eventData }) {
       const request = await fetch(
         "http://localhost:8080/ticket-booking/php/events.php",
         {
-          method: "POST",
+          method: "PUT",
           headers: { "Content-type": "application/json" },
           body: JSON.stringify({...formData, image}),
         }
@@ -105,7 +105,7 @@ function EditEvent({ dialogOpen, dialogToggler, fetchEvent, eventData }) {
 
       <form
         action=""
-        method="post"
+        method="put"
         onSubmit={formSubmit}
         className="create-event-form"
       >
