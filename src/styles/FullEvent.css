@@ -57,6 +57,26 @@
 .full-event-body-ticket-count {
     font-size: .9rem;
 }
+
+.full-event-admin-btns {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;    
+}
+.full-event-edit-btn, .full-event-delete-btn {
+    color: white;
+    font-size: .875rem;
+}
+.full-event-edit-btn {
+    background-color: #007bff;
+}
+
+.full-event-delete-btn {
+    background-color: red;
+}
 .full-event-ticket {
     border-radius: .25rem;
     background-color: #fff;

@@ -250,8 +250,8 @@ const FullEvent = ({ loggedIn }) => {
           </div>
           {userData.is_admin ? (
             <div className="full-event-admin-btns">
-              <button>Edit Event</button>
-              <button>Delete Event</button>
+              <button className="full-event-edit-btn">Edit Event</button>
+              <button className="full-event-delete-btn">Delete Event</button>
             </div>
           ) : (
             ""
