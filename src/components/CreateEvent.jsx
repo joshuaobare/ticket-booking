@@ -1,10 +1,10 @@
 import { useState } from "react";
-import "../styles/EventCard.css"
+import "../styles/EventCard.css";
 import { Dialog } from "@mui/material";
-import "../styles/CreateEvent.css"
+import "../styles/CreateEvent.css";
 import { Close } from "@mui/icons-material";
 
-function CreateEvent({dialogOpen}) {
+function CreateEvent({ dialogOpen }) {
   const [formData, setFormData] = useState({
     event_name: "",
     event_location: "",
@@ -49,10 +49,23 @@ function CreateEvent({dialogOpen}) {
   };
   return (
     <Dialog open={dialogOpen}>
-      <div className="create-event-close"><Close /></div>
-      <form action="" method="post" onSubmit={formSubmit} className="create-event-form">
+      <div className="create-event-header">        
+        <h2 className="create-event-heading">Create Event</h2>
+        <button className="create-event-close">
+          <Close />
+        </button>
+      </div>
+
+      <form
+        action=""
+        method="post"
+        onSubmit={formSubmit}
+        className="create-event-form"
+      >
         <div className="create-event-form-item">
-          <label htmlFor="event_name" className="create-event-form-item-label">Name</label>
+          <label htmlFor="event_name" className="create-event-form-item-label">
+            Name
+          </label>
           <input
             type="text"
             name="event_name"
@@ -61,7 +74,12 @@ function CreateEvent({dialogOpen}) {
           />
         </div>
         <div className="create-event-form-item">
-          <label htmlFor="event_location" className="create-event-form-item-label">Location</label>
+          <label
+            htmlFor="event_location"
+            className="create-event-form-item-label"
+          >
+            Location
+          </label>
           <input
             type="text"
             name="event_location"
@@ -70,7 +88,12 @@ function CreateEvent({dialogOpen}) {
           />
         </div>
         <div className="create-event-form-item">
-          <label htmlFor="vip_ticket_price" className="create-event-form-item-label">Vip Ticket Price</label>
+          <label
+            htmlFor="vip_ticket_price"
+            className="create-event-form-item-label"
+          >
+            Vip Ticket Price
+          </label>
           <input
             type="text"
             name="vip_ticket_price"
@@ -79,7 +102,12 @@ function CreateEvent({dialogOpen}) {
           />
         </div>
         <div className="create-event-form-item">
-          <label htmlFor="regular_ticket_price" className="create-event-form-item-label">Regular Ticket Price</label>
+          <label
+            htmlFor="regular_ticket_price"
+            className="create-event-form-item-label"
+          >
+            Regular Ticket Price
+          </label>
           <input
             type="text"
             name="regular_ticket_price"
@@ -88,7 +116,12 @@ function CreateEvent({dialogOpen}) {
           />
         </div>
         <div className="create-event-form-item">
-          <label htmlFor="max_attendees" className="create-event-form-item-label">Max Attendees</label>
+          <label
+            htmlFor="max_attendees"
+            className="create-event-form-item-label"
+          >
+            Max Attendees
+          </label>
           <input
             type="text"
             name="max_attendees"
@@ -97,7 +130,9 @@ function CreateEvent({dialogOpen}) {
           />
         </div>
         <div className="create-event-form-item">
-          <label htmlFor="event_desc" className="create-event-form-item-label">Event Description</label>
+          <label htmlFor="event_desc" className="create-event-form-item-label">
+            Event Description
+          </label>
           <textarea
             type="text"
             name="event_desc"
@@ -106,7 +141,9 @@ function CreateEvent({dialogOpen}) {
           />
         </div>
         <div className="create-event-form-item">
-          <label htmlFor="date" className="create-event-form-item-label">Date and Time</label>
+          <label htmlFor="date" className="create-event-form-item-label">
+            Date and Time
+          </label>
           <input
             type="datetime-local"
             name="date"
@@ -116,7 +153,7 @@ function CreateEvent({dialogOpen}) {
         </div>
         <button>Submit</button>
       </form>
-    </Dialog >
+    </Dialog>
   );
 }
 
