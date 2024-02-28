@@ -87,7 +87,7 @@ const SignUp = () => {
             value={formData.password}
           />
         </div>
-        <button>Submit</button>
+        <button className="signup-form-submit-btn">Submit</button>
       </form>
     </div>
   );
