@@ -5,16 +5,15 @@ import { format } from "date-fns";
 import "../styles/FullEvent.css";
 
 const FullEvent = ({ loggedIn }) => {
-  const { id } = useParams();  
-  const [user_id, setUserId] = useState(null);
+  const { id } = useParams();
   const [userData, setUserData] = useState({
     user_id: null,
     first_name: "",
     last_name: "",
     email: "",
     is_admin: false,
-  })
-  const [bookingSuccessful, setBookingSuccessful] = useState(false)
+  });
+  const [bookingSuccessful, setBookingSuccessful] = useState(false);
   const [eventData, setEventData] = useState({
     date: Date.now(),
     event_desc: "",
@@ -24,7 +23,7 @@ const FullEvent = ({ loggedIn }) => {
     max_attendees: "",
     regular_ticket_price: "",
     vip_ticket_price: "",
-    image: ""
+    image: "",
   });
   const [ticketCount, setTicketCount] = useState({
     vip_tickets: 0,
@@ -87,7 +86,7 @@ const FullEvent = ({ loggedIn }) => {
           max_attendees,
           regular_ticket_price,
           vip_ticket_price,
-          image
+          image,
         } = response.event;
         setEventData({
           date,
@@ -98,7 +97,7 @@ const FullEvent = ({ loggedIn }) => {
           max_attendees,
           regular_ticket_price,
           vip_ticket_price,
-          image
+          image,
         });
       }
     } catch (error) {
@@ -109,7 +108,7 @@ const FullEvent = ({ loggedIn }) => {
   useEffect(() => {
     fetchEvent();
     if (localStorage.getItem("user_id")) {
-      setUserId(localStorage.getItem("user_id"));
+      userVerification(localStorage.getItem("user_id"));
     }
   }, []);
 
@@ -117,7 +116,7 @@ const FullEvent = ({ loggedIn }) => {
     const fetchTicketCount = async () => {
       try {
         const request = await fetch(
-          `http://localhost:8080/ticket-booking/php/ticketcounter.php?user_id=${user_id}&event_id=${eventData.event_id}`,
+          `http://localhost:8080/ticket-booking/php/ticketcounter.php?user_id=${userData.user_id}&event_id=${eventData.event_id}`,
           {
             method: "GET",
             headers: {
@@ -172,8 +171,6 @@ const FullEvent = ({ loggedIn }) => {
       };
     });
   }, [selectedTickets]);
-  //console.log(selectedTickets)
-  console.log(selectedTickets);
 
   const decrementCount = (ticketType) => {
     setSelectedTickets((prevState) => {
@@ -188,7 +185,7 @@ const FullEvent = ({ loggedIn }) => {
   };
 
   const bookTickets = async () => {
-    try {      
+    try {
       const request = await fetch(
         "http://localhost:8080/ticket-booking/php/bookticket.php",
         {
@@ -196,7 +193,7 @@ const FullEvent = ({ loggedIn }) => {
           body: JSON.stringify({
             ...selectedTickets,
             event_id: eventData.event_id,
-            user_id,
+            user_id: userData.user_id,
             regular_ticket_price: eventData.regular_ticket_price,
             vip_ticket_price: eventData.vip_ticket_price,
           }),
@@ -213,7 +210,7 @@ const FullEvent = ({ loggedIn }) => {
         setSelectedTickets({
           vip_tickets: 0,
           regular_tickets: 0,
-        })
+        });
       }
     } catch (error) {
       console.log(error);
@@ -223,10 +220,16 @@ const FullEvent = ({ loggedIn }) => {
   return (
     <div className="full-event">
       <div className="full-event-cont">
-        <img src={eventData.image || poster} alt="" className="full-event-poster" />
+        <img
+          src={eventData.image || poster}
+          alt=""
+          className="full-event-poster"
+        />
         <div className="full-event-body">
           <h1 className="full-event-body-header">{eventData.event_name}</h1>
-          <div className="full-event-body-description">{eventData.event_desc}</div>
+          <div className="full-event-body-description">
+            {eventData.event_desc}
+          </div>
           <div className="full-event-body-date">
             <span className="material-symbols-outlined">schedule</span>{" "}
             {dateHandler(eventData.date)}
@@ -245,6 +248,14 @@ const FullEvent = ({ loggedIn }) => {
           <div className="full-event-body-ticket-count">
             Available Tickets: {eventData.max_attendees}
           </div>
+          {userData.is_admin ? (
+            <div className="full-event-admin-btns">
+              <button>Edit Event</button>
+              <button>Delete Event</button>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
         <div className="full-event-ticket">
           <h1 className="full-event-body-header">Tickets</h1>
