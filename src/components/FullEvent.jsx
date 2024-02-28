@@ -5,9 +5,11 @@ import { format } from "date-fns";
 import "../styles/FullEvent.css";
 import EditEvent from "./EditEvent";
 import DeleteEvent from "./DeleteEvent";
+import { useNavigate } from "react-router-dom";
 
 const FullEvent = ({ loggedIn }) => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [userData, setUserData] = useState({
     user_id: null,
     first_name: "",
@@ -17,7 +19,7 @@ const FullEvent = ({ loggedIn }) => {
   });
   const [bookingSuccessful, setBookingSuccessful] = useState(false);
   const [editDialogOpen, setEditDialogOpen] = useState(false);
-  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [eventData, setEventData] = useState({
     date: Date.now(),
     event_desc: "",
@@ -116,6 +118,27 @@ const FullEvent = ({ loggedIn }) => {
     }
   }, []);
 
+  const deleteEvent = async () => {
+    try {
+      const request = await fetch(
+        `http://localhost:8080/ticket-booking/php/deleteevent.php?id=${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-type": "application/json",
+          },
+        }
+      );
+
+      if (response.message) {
+        navigate("/");
+      }
+      const response = request.json();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     const fetchTicketCount = async () => {
       try {
@@ -154,12 +177,6 @@ const FullEvent = ({ loggedIn }) => {
   const dateHandler = (date) => {
     const dateObj = new Date(date);
     return `${format(dateObj, "EEE do MMMM")} at ${format(dateObj, "h:m aaa")}`;
-  };
-
-  const selectChange = (e) => {
-    setSelectedTickets((prevState) => {
-      return { ...selectedTickets, [e.target.name]: Number(e.target.value) };
-    });
   };
 
   useEffect(() => {
@@ -268,7 +285,12 @@ const FullEvent = ({ loggedIn }) => {
               >
                 Edit Event
               </button>
-              <button className="full-event-delete-btn" onClick={deleteDialogToggler}>Delete Event</button>
+              <button
+                className="full-event-delete-btn"
+                onClick={deleteDialogToggler}
+              >
+                Delete Event
+              </button>
             </div>
           ) : (
             ""
@@ -348,9 +370,12 @@ const FullEvent = ({ loggedIn }) => {
         dialogOpen={editDialogOpen}
         dialogToggler={editDialogToggler}
         fetchEvent={fetchEvent}
-        event_id = {id}
+        event_id={id}
       />
-      <DeleteEvent dialogOpen={deleteDialogOpen} dialogToggler={deleteDialogToggler}/>
+      <DeleteEvent
+        dialogOpen={deleteDialogOpen}
+        dialogToggler={deleteDialogToggler}
+      />
     </div>
   );
 };
