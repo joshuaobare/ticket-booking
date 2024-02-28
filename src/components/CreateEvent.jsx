@@ -13,6 +13,7 @@ function CreateEvent({ dialogOpen, dialogToggler }) {
     max_attendees: "",
     event_desc: "",
     date: "",
+    image: null
   });
   const formSubmit = async (e) => {
     e.preventDefault();
@@ -35,6 +36,7 @@ function CreateEvent({ dialogOpen, dialogToggler }) {
         max_attendees: "",
         event_desc: "",
         date: "",
+        image: null
       });
     } catch (err) {
       console.log(err);
@@ -42,9 +44,9 @@ function CreateEvent({ dialogOpen, dialogToggler }) {
   };
 
   const formChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, files } = e.target;
     setFormData((prevState) => {
-      return { ...prevState, [name]: value };
+      return { ...prevState, [name]: type === "file" ? files[0] : value };
     });
   };
   return (
@@ -138,6 +140,19 @@ function CreateEvent({ dialogOpen, dialogToggler }) {
             name="event_desc"
             onChange={formChange}
             value={formData.event_desc}
+            id="event_desc"
+          />
+        </div>
+        <div className="create-event-form-item">
+          <label htmlFor="image" className="create-event-form-item-label">
+            Poster
+          </label>
+          <input
+            type="file"
+            name="image"
+            accept=".jpg, .png, .jpeg, .gif"
+            onChange={formChange}
+            value={formData.image}
           />
         </div>
         <div className="create-event-form-item">
