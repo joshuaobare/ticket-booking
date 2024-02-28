@@ -36,6 +36,13 @@
     margin-block-start: 0;
     margin-block-end: 0;
     margin-bottom: 10px;
+    text-align: left;
+}
+.full-event-body-description {
+    text-align: left;
+    padding-bottom: 10px;
+    font-style: italic;
+    font-weight: 500;
 }
 
 .full-event-body-location, .full-event-body-prices, .full-event-body-date {

@@ -199,6 +199,7 @@ const FullEvent = ({ loggedIn }) => {
         <img src={eventData.image || poster} alt="" className="full-event-poster" />
         <div className="full-event-body">
           <h1 className="full-event-body-header">{eventData.event_name}</h1>
+          <div className="full-event-body-description">{eventData.event_desc}</div>
           <div className="full-event-body-date">
             <span className="material-symbols-outlined">schedule</span>{" "}
             {dateHandler(eventData.date)}
