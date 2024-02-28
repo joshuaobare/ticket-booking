@@ -1,9 +1,10 @@
-import poster from "../assets/randomposter.webp";
+import blackbg from "../assets/blackbg.jpg";
 import { format } from "date-fns";
 const EventCard = ({ event }) => {
   const style = {
-    backgroundImage: `url(${poster})`,
+    backgroundImage: `url(${ blackbg})`,
   };
+  //console.log(event.image)
 
   const dateHandler = (date) => {
     const dateObj = new Date(date);

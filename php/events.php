@@ -13,6 +13,7 @@ if (
         $sql = "INSERT INTO EVENT (event_name, date, event_location, vip_ticket_price,regular_ticket_price,max_attendees,event_desc, image) 
 				VALUES(:event_name, :date, :event_location, :vip_ticket_price,:regular_ticket_price,:max_attendees,:event_desc, :image)";
         $stmt = $pdo->prepare($sql);
+        
         $stmt->execute(
             array(
                 ":event_name" => $_POST["event_name"] , 
@@ -22,7 +23,7 @@ if (
                 ":regular_ticket_price" => $_POST["regular_ticket_price"],
                 ":max_attendees" => $_POST["max_attendees"],
                 ":event_desc" => $_POST["event_desc"],
-                ":image" => $_POST["image"]
+                ":image" => $_POST['image']
             )
         );
         $data = array("res" => "Event created successfully");        
@@ -31,4 +32,3 @@ if (
         echo json_encode(array("error" => $e));
     }
 }
-?>

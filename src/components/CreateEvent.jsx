@@ -12,19 +12,36 @@ function CreateEvent({ dialogOpen, dialogToggler }) {
     regular_ticket_price: "",
     max_attendees: "",
     event_desc: "",
-    date: "",
-    image: ""
+    date: "",    
   });
+  const [image, setImage] = useState("")
+
+  function convertToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        resolve(reader.result);
+      };
+      reader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  }
+  const handleImage = async (e) => {
+    setImage(await convertToBase64(e.target.files[0]));
+  }
+
   const formSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData)
+    console.log(JSON.stringify(formData));
     try {
       const request = await fetch(
         "http://localhost:8080/ticket-booking/php/events.php",
         {
           method: "POST",
           headers: { "Content-type": "application/json" },
-          body: JSON.stringify(formData),
+          body: JSON.stringify({...formData, image}),
         }
       );
       const response = await request.json();
@@ -36,23 +53,31 @@ function CreateEvent({ dialogOpen, dialogToggler }) {
         regular_ticket_price: "",
         max_attendees: "",
         event_desc: "",
-        date: "",
-        image: ""
+        date: "",        
       });
     } catch (err) {
       console.log(err);
     }
   };
-
+  
   const formChange = (e) => {
     const { name, value, type, files } = e.target;
+
     setFormData((prevState) => {
-      return { ...prevState, [name]: type === "file" ? files[0] : value };
+      return {
+        ...prevState,
+        [name]:
+          type === "file"
+            ? new Blob([files[0]], {
+                type: "application/json",
+              })
+            : value,
+      };
     });
   };
   return (
     <Dialog open={dialogOpen}>
-      <div className="create-event-header">        
+      <div className="create-event-header">
         <h2 className="create-event-heading">Create Event</h2>
         <button className="create-event-close" onClick={dialogToggler}>
           <Close />
@@ -152,8 +177,7 @@ function CreateEvent({ dialogOpen, dialogToggler }) {
             type="file"
             name="image"
             accept=".jpg, .png, .jpeg, .gif"
-            onChange={formChange}
-            
+            onChange={handleImage}
           />
         </div>
         <div className="create-event-form-item">
