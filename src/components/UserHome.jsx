@@ -68,7 +68,7 @@ const UserHome = () => {
   }, []);
 
   const dialogToggler = () => {
-    setDialogOpen(true);
+    setDialogOpen(prevState => !prevState);
   };
 
   return (
@@ -126,7 +126,7 @@ const UserHome = () => {
           <div>There are no upcoming events. Please check again soon</div>
         )}
       </div>
-      <CreateEvent dialogOpen={dialogOpen} setDialogOpen={setDialogOpen} />
+      <CreateEvent dialogOpen={dialogOpen} dialogToggler={dialogToggler} />
     </div>
   );
 };

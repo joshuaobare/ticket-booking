@@ -4,7 +4,7 @@ import { Dialog } from "@mui/material";
 import "../styles/CreateEvent.css";
 import { Close } from "@mui/icons-material";
 
-function CreateEvent({ dialogOpen }) {
+function CreateEvent({ dialogOpen, dialogToggler }) {
   const [formData, setFormData] = useState({
     event_name: "",
     event_location: "",
@@ -51,7 +51,7 @@ function CreateEvent({ dialogOpen }) {
     <Dialog open={dialogOpen}>
       <div className="create-event-header">        
         <h2 className="create-event-heading">Create Event</h2>
-        <button className="create-event-close">
+        <button className="create-event-close" onClick={dialogToggler}>
           <Close />
         </button>
       </div>
