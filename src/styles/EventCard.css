@@ -6,7 +6,7 @@
 .event-card-poster {
     height: 50%;
     width: 100%;
-    background: no-repeat fixed center;
+    /* background: no-repeat fixed center; */
     border-radius: 0.25rem;
 }
 .event-card-date {
