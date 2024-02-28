@@ -126,7 +126,7 @@ const UserHome = () => {
           <div>There are no upcoming events. Please check again soon</div>
         )}
       </div>
-      <CreateEvent dialogOpen={dialogOpen} dialogToggler={dialogToggler} />
+      <CreateEvent dialogOpen={dialogOpen} dialogToggler={dialogToggler} fetchEvents={fetchEvents}/>
     </div>
   );
 };

@@ -26,7 +26,7 @@ if (
                 ":image" => $_POST['image']
             )
         );
-        $data = array("res" => "Event created successfully");        
+        $data = array("message" => "Event created successfully");        
         echo json_encode($data);
     } catch (Exception $e) {
         echo json_encode(array("error" => $e));

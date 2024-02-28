@@ -4,7 +4,7 @@ import { Dialog } from "@mui/material";
 import "../styles/CreateEvent.css";
 import { Close } from "@mui/icons-material";
 
-function CreateEvent({ dialogOpen, dialogToggler }) {
+function CreateEvent({ dialogOpen, dialogToggler, fetchEvents }) {
   const [formData, setFormData] = useState({
     event_name: "",
     event_location: "",
@@ -45,16 +45,21 @@ function CreateEvent({ dialogOpen, dialogToggler }) {
         }
       );
       const response = await request.json();
-      console.log(response);
-      setFormData({
-        event_name: "",
-        event_location: "",
-        vip_ticket_price: "",
-        regular_ticket_price: "",
-        max_attendees: "",
-        event_desc: "",
-        date: "",        
-      });
+      
+      if (response.message) {
+        setFormData({
+          event_name: "",
+          event_location: "",
+          vip_ticket_price: "",
+          regular_ticket_price: "",
+          max_attendees: "",
+          event_desc: "",
+          date: "",        
+        });
+        fetchEvents()
+        dialogToggler()
+      }
+      
     } catch (err) {
       console.log(err);
     }

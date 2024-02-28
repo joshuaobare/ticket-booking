@@ -18,6 +18,7 @@
 .event-card-name {    
     font-weight: 700;
     font-size: 1rem;
+    text-align: left;
 }
 
 .event-card-price {
