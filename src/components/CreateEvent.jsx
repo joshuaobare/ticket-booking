@@ -51,8 +51,8 @@ function CreateEvent({dialogOpen}) {
     <Dialog open={dialogOpen}>
       <div className="create-event-close"><Close /></div>
       <form action="" method="post" onSubmit={formSubmit} className="create-event-form">
-        <div>
-          <label htmlFor="event_name">Name</label>
+        <div className="create-event-form-item">
+          <label htmlFor="event_name" className="create-event-form-item-label">Name</label>
           <input
             type="text"
             name="event_name"
@@ -60,8 +60,8 @@ function CreateEvent({dialogOpen}) {
             value={formData.event_name}
           />
         </div>
-        <div>
-          <label htmlFor="event_location">Location</label>
+        <div className="create-event-form-item">
+          <label htmlFor="event_location" className="create-event-form-item-label">Location</label>
           <input
             type="text"
             name="event_location"
@@ -69,8 +69,8 @@ function CreateEvent({dialogOpen}) {
             value={formData.event_location}
           />
         </div>
-        <div>
-          <label htmlFor="vip_ticket_price">Vip Ticket Price</label>
+        <div className="create-event-form-item">
+          <label htmlFor="vip_ticket_price" className="create-event-form-item-label">Vip Ticket Price</label>
           <input
             type="text"
             name="vip_ticket_price"
@@ -78,8 +78,8 @@ function CreateEvent({dialogOpen}) {
             value={formData.vip_ticket_price}
           />
         </div>
-        <div>
-          <label htmlFor="regular_ticket_price">Regular Ticket Price</label>
+        <div className="create-event-form-item">
+          <label htmlFor="regular_ticket_price" className="create-event-form-item-label">Regular Ticket Price</label>
           <input
             type="text"
             name="regular_ticket_price"
@@ -87,8 +87,8 @@ function CreateEvent({dialogOpen}) {
             value={formData.regular_ticket_price}
           />
         </div>
-        <div>
-          <label htmlFor="max_attendees">Max Attendees</label>
+        <div className="create-event-form-item">
+          <label htmlFor="max_attendees" className="create-event-form-item-label">Max Attendees</label>
           <input
             type="text"
             name="max_attendees"
@@ -96,17 +96,17 @@ function CreateEvent({dialogOpen}) {
             value={formData.max_attendees}
           />
         </div>
-        <div>
-          <label htmlFor="event_desc">Event Description</label>
-          <input
+        <div className="create-event-form-item">
+          <label htmlFor="event_desc" className="create-event-form-item-label">Event Description</label>
+          <textarea
             type="text"
             name="event_desc"
             onChange={formChange}
             value={formData.event_desc}
           />
         </div>
-        <div>
-          <label htmlFor="date">Date and Time</label>
+        <div className="create-event-form-item">
+          <label htmlFor="date" className="create-event-form-item-label">Date and Time</label>
           <input
             type="datetime-local"
             name="date"
