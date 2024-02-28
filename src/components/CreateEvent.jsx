@@ -13,10 +13,11 @@ function CreateEvent({ dialogOpen, dialogToggler }) {
     max_attendees: "",
     event_desc: "",
     date: "",
-    image: null
+    image: ""
   });
   const formSubmit = async (e) => {
     e.preventDefault();
+    console.log(formData)
     try {
       const request = await fetch(
         "http://localhost:8080/ticket-booking/php/events.php",
@@ -36,7 +37,7 @@ function CreateEvent({ dialogOpen, dialogToggler }) {
         max_attendees: "",
         event_desc: "",
         date: "",
-        image: null
+        image: ""
       });
     } catch (err) {
       console.log(err);
@@ -152,7 +153,7 @@ function CreateEvent({ dialogOpen, dialogToggler }) {
             name="image"
             accept=".jpg, .png, .jpeg, .gif"
             onChange={formChange}
-            value={formData.image}
+            
           />
         </div>
         <div className="create-event-form-item">

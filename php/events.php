@@ -28,7 +28,7 @@ if (
         $data = array("res" => "Event created successfully");        
         echo json_encode($data);
     } catch (Exception $e) {
-        echo "An error has occurred";
+        echo json_encode(array("error" => $e));
     }
 }
 ?>
