@@ -1,0 +1,29 @@
+.delete-event {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    border-radius: .25em;
+}
+
+.delete-event-body {
+    padding: 10px;
+    font-weight: 700;
+}
+
+.delete-event-close-cont {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.delete-event-close-btn {
+    background-color: #fff;
+    padding: 0.3em 0.6em;
+}
+
+.delete-event-delete-btn {
+    color: #fff;
+    background-color: red;
+}

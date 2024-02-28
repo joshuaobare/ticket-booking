@@ -1,12 +1,23 @@
-import { Dialog } from "@mui/material"
+import { Dialog } from "@mui/material";
+import { Close } from "@mui/icons-material";
+import "../styles/DeleteEvent.css";
 
-const DeleteEvent = ({deleteDialogToggler , dialogOpen}) => {
-return (
+const DeleteEvent = ({ dialogToggler, dialogOpen }) => {
+  return (
     <Dialog open={dialogOpen}>
-        <div>Are you sure you want to delete this event?</div>
-        <button>Delete</button>
+      <div className="delete-event">
+        <div className="delete-event-close-cont">
+          <button onClick={dialogToggler} className="delete-event-close-btn">
+            <Close />
+          </button>
+        </div>
+        <div className="delete-event-body">
+          Are you sure you want to delete this event?
+        </div>
+        <button className="delete-event-delete-btn">Delete</button>
+      </div>
     </Dialog>
-)
-}
+  );
+};
 
-export default DeleteEvent
+export default DeleteEvent;
