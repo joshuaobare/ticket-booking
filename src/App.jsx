@@ -16,12 +16,20 @@ import { HashRouter, BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+
+  const logout = () => {
+    localStorage.removeItem("user_id")
+    setLoggedIn(false)
+  }
+
+
+
   return (
     <div className="App">
       {/* <Login setLoggedIn={setLoggedIn} setIsAdmin={setIsAdmin}/> */}
       
       <BrowserRouter basename="/">
-      <Navbar />
+      <Navbar logout={logout}/>
         <Routes>
           <Route
             path="/"
