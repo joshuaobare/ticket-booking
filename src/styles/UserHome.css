@@ -22,6 +22,7 @@
     gap: 10px;
     background-color: black;
     color: white;
+    padding: 0.4em 1em;
 }
 .UserHome-event-count {
   width: 100%;

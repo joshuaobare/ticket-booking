@@ -151,7 +151,7 @@ function CreateEvent({ dialogOpen, dialogToggler }) {
             value={formData.date}
           />
         </div>
-        <button>Submit</button>
+        <button className="create-event-form-submit-btn">Submit</button>
       </form>
     </Dialog>
   );

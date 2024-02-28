@@ -46,3 +46,9 @@
   text-align: left;
   font-weight: 500;
 }
+
+.create-event-form-submit-btn{
+    background-color: black;
+    color: white;
+    padding: 0.4em 1em;
+}
