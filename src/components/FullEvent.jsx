@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import poster from "../assets/randomposter.webp";
+import poster from "../assets/blackbg.jpg";
 import { format } from "date-fns";
 import "../styles/FullEvent.css";
 
@@ -17,6 +17,7 @@ const FullEvent = ({ loggedIn }) => {
     max_attendees: "",
     regular_ticket_price: "",
     vip_ticket_price: "",
+    image: ""
   });
   const [ticketCount, setTicketCount] = useState({
     vip_tickets: 0,
@@ -52,6 +53,7 @@ const FullEvent = ({ loggedIn }) => {
           max_attendees,
           regular_ticket_price,
           vip_ticket_price,
+          image
         } = response.event;
         setEventData({
           date,
@@ -62,6 +64,7 @@ const FullEvent = ({ loggedIn }) => {
           max_attendees,
           regular_ticket_price,
           vip_ticket_price,
+          image
         });
       }
     } catch (error) {
@@ -193,7 +196,7 @@ const FullEvent = ({ loggedIn }) => {
   return (
     <div className="full-event">
       <div className="full-event-cont">
-        <img src={poster} alt="" className="full-event-poster" />
+        <img src={eventData.image || poster} alt="" className="full-event-poster" />
         <div className="full-event-body">
           <h1 className="full-event-body-header">{eventData.event_name}</h1>
           <div className="full-event-body-date">
