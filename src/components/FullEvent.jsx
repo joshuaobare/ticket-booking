@@ -17,6 +17,7 @@ const FullEvent = ({ loggedIn }) => {
   });
   const [bookingSuccessful, setBookingSuccessful] = useState(false);
   const [editDialogOpen, setEditDialogOpen] = useState(false);
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
   const [eventData, setEventData] = useState({
     date: Date.now(),
     event_desc: "",
@@ -224,6 +225,10 @@ const FullEvent = ({ loggedIn }) => {
     setEditDialogOpen((prevState) => !prevState);
   };
 
+  const deleteDialogToggler = () => {
+    setDeleteDialogOpen((prevState) => !prevState);
+  };
+
   return (
     <div className="full-event">
       <div className="full-event-cont">
@@ -263,7 +268,7 @@ const FullEvent = ({ loggedIn }) => {
               >
                 Edit Event
               </button>
-              <button className="full-event-delete-btn">Delete Event</button>
+              <button className="full-event-delete-btn" onClick={deleteDialogToggler}>Delete Event</button>
             </div>
           ) : (
             ""
@@ -345,7 +350,7 @@ const FullEvent = ({ loggedIn }) => {
         fetchEvent={fetchEvent}
         event_id = {id}
       />
-      <DeleteEvent />
+      <DeleteEvent dialogOpen={deleteDialogOpen} dialogToggler={deleteDialogToggler}/>
     </div>
   );
 };
