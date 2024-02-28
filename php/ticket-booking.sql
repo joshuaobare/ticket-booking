@@ -9,7 +9,8 @@ CREATE TABLE event (
     regular_ticket_price DECIMAL NOT NULL,
     max_attendees INTEGER,
     event_desc VARCHAR(255),
-    date datetime
+    date datetime,
+    image blob
 );
 
 CREATE TABLE user (
@@ -18,7 +19,7 @@ CREATE TABLE user (
     last_name VARCHAR(20) NOT NULL,
     email VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    is_admin BOOLEAN
+    is_admin BOOLEAN    
 );
 
 CREATE TABLE ticketing (
