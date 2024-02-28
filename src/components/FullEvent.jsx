@@ -121,22 +121,23 @@ const FullEvent = ({ loggedIn }) => {
   const deleteEvent = async () => {
     try {
       const request = await fetch(
-        `http://localhost:8080/ticket-booking/php/deleteevent.php?id=${id}`,
+        `http://localhost:8080/ticket-booking/php/deleteevent.php`,
         {
-          method: "DELETE",
-          body: JSON.stringify({id}),
+          method: "DELETE",          
           headers: {
             "Content-type": "application/json",
-          },
-          
+          },          
+          body: JSON.stringify({event_id: id}),
         }
       );
-
+      const response = await request.json();
+      console.log(response)
+      
       if (response.message) {
         deleteDialogToggler()
         navigate("/");
       }
-      const response = request.json();
+      
     } catch (error) {
       console.log(error);
     }
@@ -378,7 +379,7 @@ const FullEvent = ({ loggedIn }) => {
       <DeleteEvent
         dialogOpen={deleteDialogOpen}
         dialogToggler={deleteDialogToggler}
-        deleteEvent ={deleteEvent}
+        deleteEvent = {deleteEvent}
       />
     </div>
   );
