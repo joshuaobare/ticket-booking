@@ -4,6 +4,7 @@ import poster from "../assets/blackbg.jpg";
 import { format } from "date-fns";
 import "../styles/FullEvent.css";
 import EditEvent from "./EditEvent";
+import DeleteEvent from "./DeleteEvent";
 
 const FullEvent = ({ loggedIn }) => {
   const { id } = useParams();
@@ -344,6 +345,7 @@ const FullEvent = ({ loggedIn }) => {
         fetchEvent={fetchEvent}
         event_id = {id}
       />
+      <DeleteEvent />
     </div>
   );
 };
