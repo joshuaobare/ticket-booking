@@ -1,0 +1,6 @@
+.create-event-close {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    cursor: pointer;
+}

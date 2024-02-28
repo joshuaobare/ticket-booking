@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "../styles/EventCard.css"
 import { Dialog } from "@mui/material";
+import "../styles/CreateEvent.css"
+import { Close } from "@mui/icons-material";
 
 function CreateEvent({dialogOpen}) {
   const [formData, setFormData] = useState({
@@ -47,7 +49,8 @@ function CreateEvent({dialogOpen}) {
   };
   return (
     <Dialog open={dialogOpen}>
-      <form action="" method="post" onSubmit={formSubmit}>
+      <div className="create-event-close"><Close /></div>
+      <form action="" method="post" onSubmit={formSubmit} className="create-event-form">
         <div>
           <label htmlFor="event_name">Name</label>
           <input
