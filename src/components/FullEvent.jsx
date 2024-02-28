@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import poster from "../assets/blackbg.jpg";
 import { format } from "date-fns";
 import "../styles/FullEvent.css";
+import EditEvent from "./EditEvent";
 
 const FullEvent = ({ loggedIn }) => {
   const { id } = useParams();
@@ -14,6 +15,7 @@ const FullEvent = ({ loggedIn }) => {
     is_admin: false,
   });
   const [bookingSuccessful, setBookingSuccessful] = useState(false);
+  const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [eventData, setEventData] = useState({
     date: Date.now(),
     event_desc: "",
@@ -217,6 +219,10 @@ const FullEvent = ({ loggedIn }) => {
     }
   };
 
+  const editDialogToggler = () => {
+    setEditDialogOpen((prevState) => !prevState);
+  };
+
   return (
     <div className="full-event">
       <div className="full-event-cont">
@@ -250,7 +256,12 @@ const FullEvent = ({ loggedIn }) => {
           </div>
           {userData.is_admin ? (
             <div className="full-event-admin-btns">
-              <button className="full-event-edit-btn">Edit Event</button>
+              <button
+                className="full-event-edit-btn"
+                onClick={editDialogToggler}
+              >
+                Edit Event
+              </button>
               <button className="full-event-delete-btn">Delete Event</button>
             </div>
           ) : (
@@ -326,6 +337,12 @@ const FullEvent = ({ loggedIn }) => {
           Book
         </button>
       </div>
+      <EditEvent
+        eventData={eventData}
+        dialogOpen={editDialogOpen}
+        dialogToggler={editDialogToggler}
+        fetchEvent={fetchEvent}
+      />
     </div>
   );
 };

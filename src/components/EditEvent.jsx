@@ -4,7 +4,7 @@ import { Dialog } from "@mui/material";
 import "../styles/CreateEvent.css";
 import { Close } from "@mui/icons-material";
 
-function EditEvent({ dialogOpen, dialogToggler, fetchEvents }) {
+function EditEvent({ dialogOpen, dialogToggler, fetchEvent }) {
   const [formData, setFormData] = useState({
     event_name: "",
     event_location: "",
@@ -56,7 +56,7 @@ function EditEvent({ dialogOpen, dialogToggler, fetchEvents }) {
           event_desc: "",
           date: "",        
         });
-        fetchEvents()
+        fetchEvent()
         dialogToggler()
       }
       
@@ -83,7 +83,7 @@ function EditEvent({ dialogOpen, dialogToggler, fetchEvents }) {
   return (
     <Dialog open={dialogOpen}>
       <div className="create-event-header">
-        <h2 className="create-event-heading">Create Event</h2>
+        <h2 className="create-event-heading">Edit Event</h2>
         <button className="create-event-close" onClick={dialogToggler}>
           <Close />
         </button>
