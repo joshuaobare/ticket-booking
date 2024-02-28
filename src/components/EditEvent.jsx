@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/EventCard.css";
 import { Dialog } from "@mui/material";
 import "../styles/CreateEvent.css";
 import { Close } from "@mui/icons-material";
 
-function EditEvent({ dialogOpen, dialogToggler, fetchEvent }) {
+function EditEvent({ dialogOpen, dialogToggler, fetchEvent, eventData }) {
   const [formData, setFormData] = useState({
     event_name: "",
     event_location: "",
@@ -12,9 +12,22 @@ function EditEvent({ dialogOpen, dialogToggler, fetchEvent }) {
     regular_ticket_price: "",
     max_attendees: "",
     event_desc: "",
-    date: "",    
+    date: "",        
   });
   const [image, setImage] = useState("")
+
+  useEffect(() => {
+    setFormData({
+        event_name: eventData.event_name,
+        event_location: eventData.event_location,
+        vip_ticket_price: eventData.vip_ticket_price,
+        regular_ticket_price: eventData.regular_ticket_price,
+        max_attendees: eventData.max_attendees,
+        event_desc: eventData.event_desc,
+        date: eventData.date,    
+      })
+      setImage(eventData.image)
+  }, [])
 
   function convertToBase64(file) {
     return new Promise((resolve, reject) => {
@@ -56,6 +69,7 @@ function EditEvent({ dialogOpen, dialogToggler, fetchEvent }) {
           event_desc: "",
           date: "",        
         });
+        setImage("")
         fetchEvent()
         dialogToggler()
       }
@@ -182,7 +196,7 @@ function EditEvent({ dialogOpen, dialogToggler, fetchEvent }) {
             type="file"
             name="image"
             accept=".jpg, .png, .jpeg, .gif"
-            onChange={handleImage}
+            onChange={handleImage}            
           />
         </div>
         <div className="create-event-form-item">
