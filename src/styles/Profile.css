@@ -116,4 +116,8 @@
     .profile-details-item {
         width: 90%;
     }
+
+    .profile-register-admin-dialog {
+        width: 100%;
+    }
 }
