@@ -26,6 +26,21 @@
 .profile-details-item {
     display: flex;
     gap: 10px;
+    width: 70%;
+}
+.profile-details-label {
+    width: 20%;
+    text-align: left;
+}
+.profile-details-create-admin {
+    background-color: #007bff;
+    margin-top: 10px;
+    padding: 0.3em 0.6em;
+    color: white;
+}
+.profile-details-detail {
+    width: 70%;
+    text-align: left;
 }
 .profile-orders-table {
     display: flex;
@@ -38,7 +53,7 @@
     cursor: pointer;
     width: 100%;
     text-align: left;
-    
+    border-radius: .25rem;
 }
 
 .profile-order-cont {

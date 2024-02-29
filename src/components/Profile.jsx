@@ -99,12 +99,15 @@ const Profile = () => {
         <section className="profile-details">
           <h1>User Details</h1>
           <div className="profile-details-item">
-            <div>Name</div>
-            <div>{userData.first_name + " " + userData.last_name}</div>
+            <div className="profile-details-label">Name:</div>
+            <div className="profile-details-detail">{userData.first_name + " " + userData.last_name}</div>
           </div>
           <div className="profile-details-item">
-            <div>Email</div>
-            <div>{userData.email}</div>
+            <div className="profile-details-label">Email:</div>
+            <div className="profile-details-detail">{userData.email}</div>
+          </div>
+          <div className="profile-details-item">
+            <button className="profile-details-create-admin">Create Admin</button>
           </div>
         </section>
         <section className="profile-orders">
