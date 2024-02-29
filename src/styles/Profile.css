@@ -9,4 +9,13 @@
 
 .profile-details {
     width: 33vw;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.profile-details-item {
+    display: flex;
+    gap: 10px;
 }

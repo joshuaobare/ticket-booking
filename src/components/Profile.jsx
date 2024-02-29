@@ -46,8 +46,20 @@ const Profile = () => {
   return (
     <div className="Profile">
       <main className="profile-main">
-        <div className="profile-details">User Details</div>
-        <section className="profile-orders">Orders</section>
+        <section className="profile-details">
+          <h1>User Details</h1>
+          <div className="profile-details-item">
+            <div>Name</div>
+            <div>{userData.first_name + " " + userData.last_name}</div>
+          </div>
+          <div className="profile-details-item">
+            <div>Email</div>
+            <div>{userData.email}</div>
+          </div>
+        </section>
+        <section className="profile-orders">
+            <h1>Orders</h1>
+        </section>
       </main>
     </div>
   );
