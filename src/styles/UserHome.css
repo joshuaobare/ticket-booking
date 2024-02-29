@@ -41,16 +41,19 @@
   width: 52vw;
 }
 .UserHome-events-grid {
-  display: flex;
-  margin: auto;
-  gap: 1.125rem;
-  row-gap: 2.375rem;
-  flex-flow: row wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
 }
 
 @media (max-width:600px) {
   .UserHome-cont {
     width: 80vw;
+  }
+
+  .UserHome-events-grid {
+    justify-content: center;
+    align-items: center;
   }
 
 
