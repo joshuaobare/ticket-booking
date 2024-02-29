@@ -6,7 +6,6 @@ import Login from "./components/Login";
 import UserHome from "./components/UserHome";
 import CreateEvent from "./components/CreateEvent";
 import FullEvent from "./components/FullEvent";
-import AdminHome from "./components/AdminHome";
 import SignUp from "./components/SignUp"
 import Navbar from "./components/Navbar";
 import Profile from "./components/Profile";
@@ -31,7 +30,7 @@ function App() {
           <Route path="/event/:id" exact element={<FullEvent loggedIn={loggedIn} />} />
           <Route path="/login" exact element = {<Login setLoggedIn={setLoggedIn} setIsAdmin={setIsAdmin} />}/>
           <Route path="/signup" exact element = {<SignUp />}/>
-          <Route path="/profile/:id" exact element = {<Profile />}/>
+          <Route path="/profile/:id" exact element = {<Profile loggedIn={loggedIn}/>}/>
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>

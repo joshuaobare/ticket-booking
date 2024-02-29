@@ -7,9 +7,11 @@ import { Link } from "react-router-dom";
 import SignUp from "./SignUp";
 import { Dialog } from "@mui/material";
 import { Close } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
-const Profile = () => {
+const Profile = ({ loggedIn }) => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [userData, setUserData] = useState({
     user_id: null,
     first_name: "",
@@ -75,10 +77,8 @@ const Profile = () => {
       console.log(response);
 
       if (response.message) {
-
         setEventData([...response.message].reverse());
       }
-
     } catch (error) {
       console.log(error);
     }
@@ -95,6 +95,12 @@ const Profile = () => {
   useEffect(() => {
     fetchEvents();
   }, [userData]);
+
+  useEffect(() => {
+    if (!loggedIn) {
+      navigate("/");
+    }
+  }, [loggedIn]);
 
   const dateHandler = (date) => {
     const dateObj = new Date(date);
