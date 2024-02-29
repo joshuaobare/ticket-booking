@@ -6,6 +6,7 @@ import "../styles/FullEvent.css";
 import EditEvent from "./EditEvent";
 import DeleteEvent from "./DeleteEvent";
 import { useNavigate } from "react-router-dom";
+import emailjs from "@emailjs/browser";
 
 const FullEvent = ({ loggedIn }) => {
   const { id } = useParams();
@@ -41,6 +42,21 @@ const FullEvent = ({ loggedIn }) => {
     vip_tickets: 0,
     regular_tickets: 0,
   });
+
+  const sendEmail = () => {
+    const params = {
+      to_name: `${userData.first_name} ${userData.last_name}`,
+      reply_to: userData.email,
+      message: `You have successfully booked a ticket for ${eventData.event_name}`,
+      publicKey: "e9T_Oy-P7Xyi1psce",
+    };
+    const options = { publicKey: "e9T_Oy-P7Xyi1psce" };
+    emailjs
+      .send("service_orhrqmr", "template_jfr62ju", params, options)
+      .then(function (res) {
+        console.log("Email sent");
+      });
+  };
 
   const userVerification = async (user_id) => {
     try {
@@ -123,21 +139,20 @@ const FullEvent = ({ loggedIn }) => {
       const request = await fetch(
         `http://localhost:8080/ticket-booking/php/deleteevent.php`,
         {
-          method: "DELETE",          
+          method: "DELETE",
           headers: {
             "Content-type": "application/json",
-          },          
-          body: JSON.stringify({event_id: id}),
+          },
+          body: JSON.stringify({ event_id: id }),
         }
       );
       const response = await request.json();
-      console.log(response)
-      
+      console.log(response);
+
       if (response.message) {
-        deleteDialogToggler()
+        deleteDialogToggler();
         navigate("/");
       }
-      
     } catch (error) {
       console.log(error);
     }
@@ -237,6 +252,7 @@ const FullEvent = ({ loggedIn }) => {
           regular_tickets: 0,
         });
       }
+      sendEmail();
     } catch (error) {
       console.log(error);
     }
@@ -379,7 +395,7 @@ const FullEvent = ({ loggedIn }) => {
       <DeleteEvent
         dialogOpen={deleteDialogOpen}
         dialogToggler={deleteDialogToggler}
-        deleteEvent = {deleteEvent}
+        deleteEvent={deleteEvent}
       />
     </div>
   );
