@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../styles/SignUp.css"
 
-const SignUp = () => {
+const SignUp = ({is_admin}) => {
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -16,7 +16,7 @@ const SignUp = () => {
         {
           method: "POST",
           headers: { "Content-type": "application/json" },
-          body: JSON.stringify(formData),
+          body: JSON.stringify({...formData, is_admin: is_admin? 1: 0}),
         }
       );
       const response = await request.json();
