@@ -1,0 +1,21 @@
+.error-page-btn {
+    background-color: black;
+    color: white;
+    display: none;
+}
+
+@media (max-width : 600px) {
+    .error-image {
+        display: none;
+    }
+    .error-page-btn {
+        display: block;
+    } 
+    #info {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}

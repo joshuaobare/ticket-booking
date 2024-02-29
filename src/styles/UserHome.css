@@ -3,6 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  
 }
 .UserHome-heading {
     text-align: left;
@@ -38,22 +39,26 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 52vw;
+  width: fit-content;
+}
+
+.UserHome-cont-head {
+  width: 100%;
 }
 .UserHome-events-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
+  margin-bottom: 20px;
 }
 
 @media (max-width:600px) {
-  .UserHome-cont {
+  /* .UserHome-cont {
     width: 80vw;
-  }
+  } */
 
   .UserHome-events-grid {
-    justify-content: center;
-    align-items: center;
+    grid-template-columns: 1fr;
   }
 
 

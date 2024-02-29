@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "../styles/UserHome.css";
 import CreateEvent from "./CreateEvent";
 
-const UserHome = ({loggedIn}) => {
+const UserHome = ({ loggedIn }) => {
   const [allEvents, setAllEvents] = useState([]);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [userData, setUserData] = useState({
@@ -78,34 +78,39 @@ const UserHome = ({loggedIn}) => {
         last_name: "",
         email: "",
         is_admin: false,
-      })
+      });
     }
-  },[loggedIn])
+  }, [loggedIn]);
 
   const dialogToggler = () => {
-    setDialogOpen(prevState => !prevState);
+    setDialogOpen((prevState) => !prevState);
   };
 
   return (
     <div className="UserHome">
       <div className="UserHome-cont">
-        <h1 className="UserHome-heading">All Events</h1>
-        {userData.is_admin ? (
-          <div className="UserHome-create-event-cont">
-            <button
-              className="UserHome-create-event-btn"
-              onClick={dialogToggler}
-            >
-              <span className="material-symbols-outlined">calendar_add_on</span>
-              Create Event
-            </button>
+        <div className="UserHome-cont-head">
+          <h1 className="UserHome-heading">All Events</h1>
+          {userData.is_admin ? (
+            <div className="UserHome-create-event-cont">
+              <button
+                className="UserHome-create-event-btn"
+                onClick={dialogToggler}
+              >
+                <span className="material-symbols-outlined">
+                  calendar_add_on
+                </span>
+                Create Event
+              </button>
+            </div>
+          ) : (
+            ""
+          )}
+          <div className="UserHome-event-count">
+            {allEvents.length} Event{allEvents.length === 1 ? "" : "s"}
           </div>
-        ) : (
-          ""
-        )}
-        <div className="UserHome-event-count">
-          {allEvents.length} Event{allEvents.length === 1 ? "" : "s"}
         </div>
+
         {allEvents.length > 0 ? (
           <div className="UserHome-events-grid">
             {allEvents.map((event) => {
@@ -141,7 +146,11 @@ const UserHome = ({loggedIn}) => {
           <div>There are no upcoming events. Please check again soon</div>
         )}
       </div>
-      <CreateEvent dialogOpen={dialogOpen} dialogToggler={dialogToggler} fetchEvents={fetchEvents}/>
+      <CreateEvent
+        dialogOpen={dialogOpen}
+        dialogToggler={dialogToggler}
+        fetchEvents={fetchEvents}
+      />
     </div>
   );
 };
