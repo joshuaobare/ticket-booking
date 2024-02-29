@@ -111,7 +111,7 @@ const Profile = ({ loggedIn }) => {
     <div className="Profile">
       <main className="profile-main">
         <section className="profile-details">
-          <h1>User Details</h1>
+          <h1 className="profile-details-header">User Details</h1>
           <div className="profile-details-item">
             <div className="profile-details-user">
               {userData.first_name + " " + userData.last_name}
