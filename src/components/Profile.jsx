@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import "../styles/EventCard.css";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
+import SignUp from "./SignUp";
+import { Dialog } from "@mui/material";
+import { Close } from "@mui/icons-material";
 
 const Profile = () => {
   const { id } = useParams();
@@ -28,6 +31,7 @@ const Profile = () => {
       TIMESTAMP: Date.now(),
     },
   ]);
+  const [registerDialogOpen, setRegisterDialogOpen] = useState(false);
 
   const fetchUser = async (user_id) => {
     try {
@@ -106,47 +110,59 @@ const Profile = () => {
           <div className="profile-details-item">
             <div className="profile-details-detail">{userData.email}</div>
           </div>
-          {userData.is_admin ? (<div className="profile-details-item">
-            <button className="profile-details-create-admin">
-              Create Admin
-            </button>
-          </div>) : ""}
+          {userData.is_admin ? (
+            <div className="profile-details-item">
+              <button className="profile-details-create-admin">
+                Create Admin
+              </button>
+            </div>
+          ) : (
+            ""
+          )}
         </section>
         <section className="profile-orders">
           <h1>Orders</h1>
           <table>
-          <tbody>
-            {eventData.map((event) => (
-              <tr className="profile-orders-tr" key={event.TICKET_ID}>
-                <Link
-                  to={`/event/${event.EVENT_ID}`}
-                  className="profile-orders-table-links"
-                >
-                  <td className="profile-orders-td">
-                    <div>
-                      <div className="event-card-name">{event.EVENT_NAME}</div>
-                      <div className="event-card-date">
-                        {dateHandler(event.DATE)}
+            <tbody>
+              {eventData.map((event) => (
+                <tr className="profile-orders-tr" key={event.TICKET_ID}>
+                  <Link
+                    to={`/event/${event.EVENT_ID}`}
+                    className="profile-orders-table-links"
+                  >
+                    <td className="profile-orders-td">
+                      <div>
+                        <div className="event-card-name">
+                          {event.EVENT_NAME}
+                        </div>
+                        <div className="event-card-date">
+                          {dateHandler(event.DATE)}
+                        </div>
+                        <div className="event-card-date">
+                          {event.EVENT_LOCATION}
+                        </div>
+                        <div className="event-card-date profile-orders-booking-date">
+                          Booked At: {dateHandler(event.TIMESTAMP)}
+                        </div>
+                        <div className="event-card-price">
+                          {`${event.TICKET_TYPE.toUpperCase()} - KShs. ${
+                            event.TICKET_PRICE
+                          }`}
+                        </div>
                       </div>
-                      <div className="event-card-date">
-                        {event.EVENT_LOCATION}
-                      </div>
-                      <div className="event-card-date profile-orders-booking-date">
-                        Booked At: {dateHandler(event.TIMESTAMP)}
-                      </div>
-                      <div className="event-card-price">
-                        {`${event.TICKET_TYPE.toUpperCase()} - KShs. ${
-                          event.TICKET_PRICE
-                        }`}
-                      </div>
-                    </div>
-                  </td>
-                </Link>
-              </tr>
-            ))}
+                    </td>
+                  </Link>
+                </tr>
+              ))}
             </tbody>
           </table>
         </section>
+        <Dialog open={registerDialogOpen}>
+          <div className="register-admin-dialog">
+            <div><Close /></div>
+            <SignUp is_admin={userData.is_admin}/>
+          </div>
+        </Dialog>
       </main>
     </div>
   );
