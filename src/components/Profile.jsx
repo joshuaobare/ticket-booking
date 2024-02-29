@@ -84,6 +84,10 @@ const Profile = () => {
     }
   };
 
+  const registerDialogToggler = () => {
+    setRegisterDialogOpen((prevState) => !prevState);
+  };
+
   useEffect(() => {
     fetchUser(id);
   }, []);
@@ -112,7 +116,10 @@ const Profile = () => {
           </div>
           {userData.is_admin ? (
             <div className="profile-details-item">
-              <button className="profile-details-create-admin">
+              <button
+                className="profile-details-create-admin"
+                onClick={registerDialogToggler}
+              >
                 Create Admin
               </button>
             </div>
@@ -158,9 +165,16 @@ const Profile = () => {
           </table>
         </section>
         <Dialog open={registerDialogOpen}>
-          <div className="register-admin-dialog">
-            <div><Close /></div>
-            <SignUp is_admin={userData.is_admin}/>
+          <div className="profile-register-admin-dialog">
+            <div className="profile-register-close-cont">
+              <button
+                onClick={registerDialogToggler}
+                className="profile-register-dialog-close"
+              >
+                <Close />
+              </button>
+            </div>
+            <SignUp is_admin={userData.is_admin} />
           </div>
         </Dialog>
       </main>

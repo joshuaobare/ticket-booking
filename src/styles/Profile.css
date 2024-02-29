@@ -73,3 +73,22 @@
 .profile-orders-booking-date {
     color: green;
 }
+.profile-register-admin-dialog {
+    width: 400px;
+}
+
+.profile-register-admin-dialog >div >form {
+    width: 90%;
+    padding-bottom: 10px;
+}
+.profile-register-close-cont {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.profile-register-dialog-close {
+    background-color: #fff;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 0;
+}
