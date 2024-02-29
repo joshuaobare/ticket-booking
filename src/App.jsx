@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -15,6 +15,16 @@ import { HashRouter, BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);  
+
+  const loginCheck = () => {
+    if (localStorage.getItem("user_id")){
+      setLoggedIn(true)
+    }
+  }
+
+  useEffect(() => {
+    loginCheck()
+  },[])
 
   return (
     <div className="App">     
