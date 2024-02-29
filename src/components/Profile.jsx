@@ -115,6 +115,7 @@ const Profile = () => {
         <section className="profile-orders">
           <h1>Orders</h1>
           <table>
+          <tbody>
             {eventData.map((event) => (
               <tr className="profile-orders-tr" key={event.TICKET_ID}>
                 <Link
@@ -143,6 +144,7 @@ const Profile = () => {
                 </Link>
               </tr>
             ))}
+            </tbody>
           </table>
         </section>
       </main>
