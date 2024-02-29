@@ -134,6 +134,22 @@ const FullEvent = ({ loggedIn }) => {
     }
   }, []);
 
+
+  useEffect(() => {
+    fetchEvent();
+    if (localStorage.getItem("user_id")) {
+      userVerification(localStorage.getItem("user_id"));
+    } else {
+      setUserData({
+        user_id: null,
+        first_name: "",
+        last_name: "",
+        email: "",
+        is_admin: false,
+      })
+    }
+  }, [loggedIn])
+
   const deleteEvent = async () => {
     try {
       const request = await fetch(
