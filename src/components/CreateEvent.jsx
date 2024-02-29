@@ -3,6 +3,8 @@ import "../styles/EventCard.css";
 import { Dialog } from "@mui/material";
 import "../styles/CreateEvent.css";
 import { Close } from "@mui/icons-material";
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 function CreateEvent({ dialogOpen, dialogToggler, fetchEvents }) {
   const [formData, setFormData] = useState({
@@ -79,9 +81,11 @@ function CreateEvent({ dialogOpen, dialogToggler, fetchEvents }) {
       };
     });
   };
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
   return (
-    <Dialog open={dialogOpen}>
-      <div>
+    <Dialog open={dialogOpen} fullScreen={fullScreen}>
+      <div className="create-event-cont">
         <div className="create-event-header">
           <h2 className="create-event-heading">Create Event</h2>
           <button className="create-event-close" onClick={dialogToggler}>

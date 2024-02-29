@@ -107,6 +107,15 @@ const Profile = ({ loggedIn }) => {
     return `${format(dateObj, "EEE do MMMM")} at ${format(dateObj, "h:m aaa")}`;
   };
 
+  const dialogStyles = {
+    drawerWidth: {
+      
+      '@media (min-width: 600px)': {
+        width: '90%'
+      }
+    }
+  }
+
   return (
     <div className="Profile">
       <main className="profile-main">
@@ -170,7 +179,7 @@ const Profile = ({ loggedIn }) => {
             </tbody>
           </table>
         </section>
-        <Dialog open={registerDialogOpen}>
+        <Dialog open={registerDialogOpen} containerStyle = {dialogStyles}>
           <div className="profile-register-admin-dialog">
             <div className="profile-register-close-cont">
               <button
