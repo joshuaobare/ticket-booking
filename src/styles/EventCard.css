@@ -8,6 +8,7 @@
     width: 100%;
     /* background: no-repeat fixed center; */
     border-radius: 0.25rem;
+    /* background-size: cover; */
 }
 .event-card-date {
     font-size: .75rem;

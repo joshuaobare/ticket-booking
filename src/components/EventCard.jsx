@@ -2,7 +2,8 @@ import blackbg from "../assets/blackbg.jpg";
 import { format } from "date-fns";
 const EventCard = ({ event }) => {
   const style = {
-    backgroundImage: `url(${ event.image || blackbg})`,
+    background: `url(${ event.image || blackbg}) no-repeat`,
+    backgroundSize: 'cover'
   };
   //console.log(event.image)
 
