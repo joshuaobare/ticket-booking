@@ -41,6 +41,8 @@
 .profile-details-detail {
     width: 70%;
     text-align: left;
+    font-weight: 700;
+    font-size: large;
 }
 .profile-orders-table {
     display: flex;

@@ -22,7 +22,7 @@ const Profile = () => {
       EVENT_NAME: "",
       IMAGE: "",
       EVENT_ID: "",
-      TICKET_ID:"",
+      TICKET_ID: "",
       TICKET_PRICE: "",
       TICKET_TYPE: "",
       TIMESTAMP: Date.now(),
@@ -68,7 +68,7 @@ const Profile = () => {
         }
       );
       const response = await request.json();
-      console.log(response)
+      console.log(response);
 
       if (response.message) {
         setEventData(response.message);
@@ -99,44 +99,47 @@ const Profile = () => {
         <section className="profile-details">
           <h1>User Details</h1>
           <div className="profile-details-item">
-            <div className="profile-details-label">Name:</div>
-            <div className="profile-details-detail">{userData.first_name + " " + userData.last_name}</div>
+            <div className="profile-details-detail">
+              {userData.first_name + " " + userData.last_name}
+            </div>
           </div>
           <div className="profile-details-item">
-            <div className="profile-details-label">Email:</div>
             <div className="profile-details-detail">{userData.email}</div>
           </div>
-          <div className="profile-details-item">
-            <button className="profile-details-create-admin">Create Admin</button>
-          </div>
+          {userData.is_admin ? (<div className="profile-details-item">
+            <button className="profile-details-create-admin">
+              Create Admin
+            </button>
+          </div>) : ""}
         </section>
         <section className="profile-orders">
           <h1>Orders</h1>
           <table>
             {eventData.map((event) => (
               <tr className="profile-orders-tr" key={event.TICKET_ID}>
-                <Link to={`/event/${event.EVENT_ID}`} className="profile-orders-table-links">
-                <td className="profile-orders-td">
-                  
-                  <div>
-                    <div className="event-card-name">{event.EVENT_NAME}</div>
-                    <div className="event-card-date">
-                      {dateHandler(event.DATE)}
+                <Link
+                  to={`/event/${event.EVENT_ID}`}
+                  className="profile-orders-table-links"
+                >
+                  <td className="profile-orders-td">
+                    <div>
+                      <div className="event-card-name">{event.EVENT_NAME}</div>
+                      <div className="event-card-date">
+                        {dateHandler(event.DATE)}
+                      </div>
+                      <div className="event-card-date">
+                        {event.EVENT_LOCATION}
+                      </div>
+                      <div className="event-card-date profile-orders-booking-date">
+                        Booked At: {dateHandler(event.TIMESTAMP)}
+                      </div>
+                      <div className="event-card-price">
+                        {`${event.TICKET_TYPE.toUpperCase()} - KShs. ${
+                          event.TICKET_PRICE
+                        }`}
+                      </div>
                     </div>
-                    <div className="event-card-date">
-                      {event.EVENT_LOCATION}
-                    </div>
-                    <div className="event-card-date profile-orders-booking-date">
-                      Booked At: {dateHandler(event.TIMESTAMP)}
-                    </div>
-                    <div className="event-card-price">
-                      {`${event.TICKET_TYPE.toUpperCase()} - KShs. ${
-                        event.TICKET_PRICE
-                      }`}
-                    </div>
-                  </div>
-                  
-                </td>
+                  </td>
                 </Link>
               </tr>
             ))}
