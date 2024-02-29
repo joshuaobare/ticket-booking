@@ -15,26 +15,18 @@ import { HashRouter, BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
-
-  const logout = () => {
-    localStorage.removeItem("user_id")
-    setLoggedIn(false)
-  }
-
-
+  const [isAdmin, setIsAdmin] = useState(false);  
 
   return (
-    <div className="App">
-      {/* <Login setLoggedIn={setLoggedIn} setIsAdmin={setIsAdmin}/> */}
+    <div className="App">     
       
       <BrowserRouter basename="/">
-      <Navbar logout={logout}/>
+      <Navbar setLoggedIn={setLoggedIn} loggedIn={loggedIn}/>
         <Routes>
           <Route
             path="/"
             exact
-            element={isAdmin ? <AdminHome /> : <UserHome />}
+            element={<UserHome loggedIn={loggedIn} />}
           />
           <Route path="/event/:id" exact element={<FullEvent loggedIn={loggedIn} />} />
           <Route path="/login" exact element = {<Login setLoggedIn={setLoggedIn} setIsAdmin={setIsAdmin} />}/>
