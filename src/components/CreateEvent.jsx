@@ -111,6 +111,7 @@ function CreateEvent({ dialogOpen, dialogToggler, fetchEvents }) {
               name="event_name"
               onChange={formChange}
               value={formData.event_name}
+              required
             />
           </div>
           <div className="create-event-form-item">
@@ -125,6 +126,7 @@ function CreateEvent({ dialogOpen, dialogToggler, fetchEvents }) {
               name="event_location"
               onChange={formChange}
               value={formData.event_location}
+              required
             />
           </div>
           <div className="create-event-form-item">
@@ -135,10 +137,11 @@ function CreateEvent({ dialogOpen, dialogToggler, fetchEvents }) {
               Vip Ticket Price
             </label>
             <input
-              type="text"
+              type="number"
               name="vip_ticket_price"
               onChange={formChange}
               value={formData.vip_ticket_price}
+              required
             />
           </div>
           <div className="create-event-form-item">
@@ -149,10 +152,11 @@ function CreateEvent({ dialogOpen, dialogToggler, fetchEvents }) {
               Regular Ticket Price
             </label>
             <input
-              type="text"
+              type="number"
               name="regular_ticket_price"
               onChange={formChange}
               value={formData.regular_ticket_price}
+              required
             />
           </div>
           <div className="create-event-form-item">
@@ -163,10 +167,11 @@ function CreateEvent({ dialogOpen, dialogToggler, fetchEvents }) {
               Max Attendees
             </label>
             <input
-              type="text"
+              type="number"
               name="max_attendees"
               onChange={formChange}
               value={formData.max_attendees}
+              required
             />
           </div>
           <div className="create-event-form-item">
@@ -204,6 +209,7 @@ function CreateEvent({ dialogOpen, dialogToggler, fetchEvents }) {
               name="date"
               onChange={formChange}
               value={formData.date}
+              min={new Date().toISOString().split("T")[0]}
             />
           </div>
           <button className="create-event-form-submit-btn">Submit</button>

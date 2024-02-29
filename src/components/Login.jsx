@@ -70,6 +70,7 @@ const Login = ({ setLoggedIn, setIsAdmin }) => {
             value={formData.email}
             onChange={formChange}
             className="login-form-input"
+            required
           />
         </div>
         <div className="login-form-item">
@@ -83,6 +84,7 @@ const Login = ({ setLoggedIn, setIsAdmin }) => {
             value={formData.password}
             onChange={formChange}
             className="login-form-input"
+            required
           />
         </div>
         <div className="login-form-forgot-pass">Forgot Password ?</div>

@@ -52,6 +52,7 @@ const SignUp = ({is_admin}) => {
             onChange={formChange}
             className="signup-form-item-input"
             value={formData.first_name}
+            required
           />
         </div>
         <div className="signup-form-item">
@@ -63,6 +64,7 @@ const SignUp = ({is_admin}) => {
             className="signup-form-item-input"
             onChange={formChange}
             value={formData.last_name}
+            required
           />
         </div>
         <div className="signup-form-item">
@@ -74,6 +76,7 @@ const SignUp = ({is_admin}) => {
             className="signup-form-item-input"
             onChange={formChange}
             value={formData.email}
+            required
           />
         </div>
         <div className="signup-form-item">
@@ -85,6 +88,7 @@ const SignUp = ({is_admin}) => {
             id="password"
             onChange={formChange}
             value={formData.password}
+            required
           />
         </div>
         <button className="signup-form-submit-btn">Submit</button>
