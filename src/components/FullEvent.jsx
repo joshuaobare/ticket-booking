@@ -7,6 +7,7 @@ import EditEvent from "./EditEvent";
 import DeleteEvent from "./DeleteEvent";
 import { useNavigate } from "react-router-dom";
 import emailjs from "@emailjs/browser";
+import { Link } from "react-router-dom";
 
 const FullEvent = ({ loggedIn }) => {
   const { id } = useParams();
@@ -339,7 +340,7 @@ const FullEvent = ({ loggedIn }) => {
               <tr className="ticket-table-row">
                 <td className="ticket-table-heading">Regular Ticket</td>
                 <td>KShs. {eventData.regular_ticket_price}</td>
-                <td className="ticket-table-select-section">
+                {loggedIn? (<td className="ticket-table-select-section">
                   <button
                     disabled={selectedTickets.regular_tickets === 0}
                     onClick={() => decrementCount("regular_tickets")}
@@ -353,12 +354,12 @@ const FullEvent = ({ loggedIn }) => {
                   >
                     +
                   </button>
-                </td>
+                </td>) : ""}
               </tr>
               <tr className="ticket-table-row">
                 <td className="ticket-table-heading">VIP Ticket</td>
                 <td>KShs. {eventData.vip_ticket_price}</td>
-                <td className="ticket-table-select-section">
+                {loggedIn? <td className="ticket-table-select-section">
                   <button
                     disabled={selectedTickets.vip_tickets === 0}
                     onClick={() => decrementCount("vip_tickets")}
@@ -372,7 +373,7 @@ const FullEvent = ({ loggedIn }) => {
                   >
                     +
                   </button>
-                </td>
+                </td> : ""}
               </tr>
             </tbody>
           </table>
@@ -394,12 +395,13 @@ const FullEvent = ({ loggedIn }) => {
             ""
           )}
         </div>
-        <button
-          disabled={ticketCount.availableCount === 0}
+        {loggedIn ? (<button
+          disabled={ticketCount.availableCount === 0 }
           onClick={bookTickets}
+          className="full-event-book-btn"
         >
           Book
-        </button>
+        </button>) : <Link className="full-event-login-btn" to={`/login`}>Login to book!</Link>}
       </div>
       <EditEvent
         eventData={eventData}
