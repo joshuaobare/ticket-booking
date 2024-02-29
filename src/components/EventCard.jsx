@@ -21,7 +21,7 @@ const EventCard = ({ event }) => {
       <div className="event-card-price">
         KShs. {event.regular_ticket_price} - KShs.{event.vip_ticket_price}
       </div>
-      <button className="event-card-book-btn">Book</button>
+     
     </div>
   );
 };

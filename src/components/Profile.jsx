@@ -75,10 +75,10 @@ const Profile = () => {
       console.log(response);
 
       if (response.message) {
-        setEventData(response.message);
-      } else {
-        setEventData([]);
+
+        setEventData([...response.message].reverse());
       }
+
     } catch (error) {
       console.log(error);
     }
