@@ -1,8 +1,9 @@
 import { useParams } from "react-router-dom";
 import "../styles/Profile.css";
 import { useEffect, useState } from "react";
-import "../styles/EventCard.css"
+import "../styles/EventCard.css";
 import { format } from "date-fns";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   const { id } = useParams();
@@ -20,6 +21,8 @@ const Profile = () => {
       EVENT_LOCATION: "",
       EVENT_NAME: "",
       IMAGE: "",
+      EVENT_ID: "",
+      TICKET_ID:"",
       TICKET_PRICE: "",
       TICKET_TYPE: "",
       TIMESTAMP: Date.now(),
@@ -65,11 +68,12 @@ const Profile = () => {
         }
       );
       const response = await request.json();
+      console.log(response)
 
       if (response.message) {
         setEventData(response.message);
       } else {
-        setEventData([])
+        setEventData([]);
       }
     } catch (error) {
       console.log(error);
@@ -107,9 +111,11 @@ const Profile = () => {
           <h1>Orders</h1>
           <table>
             {eventData.map((event) => (
-              <tr className="profile-orders-tr">
+              <tr className="profile-orders-tr" key={event.TICKET_ID}>
+                <Link to={`/event/${event.EVENT_ID}`} className="profile-orders-table-links">
                 <td className="profile-orders-td">
-                  <div>                                        
+                  
+                  <div>
                     <div className="event-card-name">{event.EVENT_NAME}</div>
                     <div className="event-card-date">
                       {dateHandler(event.DATE)}
@@ -121,12 +127,14 @@ const Profile = () => {
                       Booked At: {dateHandler(event.TIMESTAMP)}
                     </div>
                     <div className="event-card-price">
-                    {`${event.TICKET_TYPE.toUpperCase()} - KShs. ${event.TICKET_PRICE}`}
+                      {`${event.TICKET_TYPE.toUpperCase()} - KShs. ${
+                        event.TICKET_PRICE
+                      }`}
                     </div>
                   </div>
+                  
                 </td>
-
-                
+                </Link>
               </tr>
             ))}
           </table>
