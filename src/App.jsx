@@ -37,7 +37,7 @@ function App() {
             element={isAdmin ? <AdminHome /> : <UserHome />}
           />
           <Route path="/event/:id" exact element={<FullEvent loggedIn={loggedIn} />} />
-          <Route path="/login" exact element = {<Login />}/>
+          <Route path="/login" exact element = {<Login setLoggedIn={setLoggedIn} setIsAdmin={setIsAdmin} />}/>
           <Route path="/signup" exact element = {<SignUp />}/>
           <Route path="/profile/:id" exact element = {<Profile />}/>
           <Route path="*" element={<ErrorPage />} />

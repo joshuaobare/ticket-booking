@@ -1,8 +1,10 @@
 import { useState } from "react";
 import "../App.css";
-import "../styles/Login.css"
+import "../styles/Login.css";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ setLoggedIn, setIsAdmin }) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -22,16 +24,17 @@ const Login = ({ setLoggedIn, setIsAdmin }) => {
         }
       );
       const response = await request.json();
-
+      console.log(response);
       if (response.message) {
         setLoggedIn(true);
-        setIsAdmin(response.user.isAdmin)
+        setIsAdmin(response.user.isAdmin);
         setFormData({
           email: "",
           password: "",
         });
         setLoginError("");
-        localStorage.setItem("user_id",response.user.user_id)
+        localStorage.setItem("user_id", response.user.user_id);
+        navigate("/")
       }
       if (response.error) {
         setLoginError(response.error);
@@ -50,9 +53,16 @@ const Login = ({ setLoggedIn, setIsAdmin }) => {
   return (
     <div className="login">
       <h1>Sign in</h1>
-      <form action="" method="post" onSubmit={formSubmit} className="login-form">
+      <form
+        action=""
+        method="post"
+        onSubmit={formSubmit}
+        className="login-form"
+      >
         <div className="login-form-item">
-          <label htmlFor="email" className="login-form-label">Email</label>
+          <label htmlFor="email" className="login-form-label">
+            Email
+          </label>
           <input
             type="email"
             name="email"
@@ -63,7 +73,9 @@ const Login = ({ setLoggedIn, setIsAdmin }) => {
           />
         </div>
         <div className="login-form-item">
-          <label htmlFor="password" className="login-form-label">Password</label>
+          <label htmlFor="password" className="login-form-label">
+            Password
+          </label>
           <input
             type="password"
             name="password"

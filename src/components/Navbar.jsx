@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "../styles/Navbar.css";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ logout }) => {
   const [userData, setUserData] = useState({
     user_id: null,
     first_name: "",
@@ -62,19 +62,21 @@ const Navbar = () => {
               <div>Register</div>
             </Link>
           </div>
-          <div className="navbar-link-cont">
-            <button>Admin</button>
-          </div>
         </div>
-      ) :  (
+      ) : (
         <div className="navbar-right">
           <div className="navbar-link-cont">
             <Link to={`/profile/${userData.user_id}`}>
               <div>{`${userData.first_name} ${userData.last_name}`}</div>
             </Link>
           </div>
+          <div className="navbar-link-cont">
+            <button className="navbar-link-logout-btn" onClick={logout}>
+              Logout
+            </button>
+          </div>
         </div>
-      ) }
+      )}
     </nav>
   );
 };
