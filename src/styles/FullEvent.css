@@ -157,7 +157,7 @@ tr >td {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: red;
+  background-color: #D92121;
   cursor: pointer;
   transition: border-color 0.25s;
   color: white;

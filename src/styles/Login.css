@@ -36,3 +36,9 @@
     /* margin-top: 5px; */
     padding:1.125rem 1rem;
 }
+
+@media (max-width: 600px) {
+    .login-form {
+        width: 90%;
+    }
+}
