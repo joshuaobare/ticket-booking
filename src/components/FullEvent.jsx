@@ -344,6 +344,7 @@ const FullEvent = ({ loggedIn }) => {
                   <button
                     disabled={selectedTickets.regular_tickets === 0}
                     onClick={() => decrementCount("regular_tickets")}
+                    className="ticket-counter-button"
                   >
                     -
                   </button>
@@ -351,6 +352,7 @@ const FullEvent = ({ loggedIn }) => {
                   <button
                     disabled={ticketCount.availableCount === 0}
                     onClick={() => incrementCount("regular_tickets")}
+                    className="ticket-counter-button"
                   >
                     +
                   </button>
@@ -363,6 +365,7 @@ const FullEvent = ({ loggedIn }) => {
                   <button
                     disabled={selectedTickets.vip_tickets === 0}
                     onClick={() => decrementCount("vip_tickets")}
+                    className="ticket-counter-button"
                   >
                     -
                   </button>
@@ -370,6 +373,7 @@ const FullEvent = ({ loggedIn }) => {
                   <button
                     disabled={ticketCount.availableCount === 0}
                     onClick={() => incrementCount("vip_tickets")}
+                    className="ticket-counter-button"
                   >
                     +
                   </button>
@@ -386,14 +390,7 @@ const FullEvent = ({ loggedIn }) => {
               <div>*You can only book upto 5 tickets</div>
             )}
           </div>
-          {loggedIn ? (
-            <div>
-              <div>Please login to book tickets</div>
-              <button>Login</button>
-            </div>
-          ) : (
-            ""
-          )}
+          
         </div>
         {loggedIn ? (<button
           disabled={ticketCount.availableCount === 0 }
@@ -401,7 +398,7 @@ const FullEvent = ({ loggedIn }) => {
           className="full-event-book-btn"
         >
           Book
-        </button>) : <Link className="full-event-login-btn" to={`/login`}>Login to book!</Link>}
+        </button>) : <Link className="full-event-login-btn" to={`/login`}>Login</Link>}
       </div>
       <EditEvent
         eventData={eventData}

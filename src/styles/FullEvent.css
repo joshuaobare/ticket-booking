@@ -133,6 +133,9 @@ tr >td {
     display: flex;
     align-items: center;    
 }
+.ticket-counter-button {
+    
+}
 
 .full-event-ticket-disclaimer {
     font-size: .825rem;
@@ -142,7 +145,7 @@ tr >td {
 .full-event-ticket-disclaimer-error {
     color: red;
 }
-.full-event-book-btn, .full-event-login-btn {
+.full-event-book-btn {
     background-color: black;
     color: white;
 }
@@ -154,7 +157,8 @@ tr >td {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: red;
   cursor: pointer;
   transition: border-color 0.25s;
+  color: white;
 }
