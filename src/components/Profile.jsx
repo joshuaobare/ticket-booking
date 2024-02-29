@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import "../styles/Profile.css";
 import { useEffect, useState } from "react";
+import "../styles/EventCard.css"
+import { format } from "date-fns";
 
 const Profile = () => {
   const { id } = useParams();
@@ -13,14 +15,14 @@ const Profile = () => {
   });
   const [eventData, setEventData] = useState([
     {
-      DATE: "",
+      DATE: Date.now(),
       EVENT_DESC: "",
       EVENT_LOCATION: "",
       EVENT_NAME: "",
       IMAGE: "",
       TICKET_PRICE: "",
       TICKET_TYPE: "",
-      TIMESTAMP: "",
+      TIMESTAMP: Date.now(),
     },
   ]);
 
@@ -66,12 +68,13 @@ const Profile = () => {
 
       if (response.message) {
         setEventData(response.message);
+      } else {
+        setEventData([])
       }
     } catch (error) {
       console.log(error);
     }
   };
-  console.log(eventData);
 
   useEffect(() => {
     fetchUser(id);
@@ -80,6 +83,11 @@ const Profile = () => {
   useEffect(() => {
     fetchEvents();
   }, [userData]);
+
+  const dateHandler = (date) => {
+    const dateObj = new Date(date);
+    return `${format(dateObj, "EEE do MMMM")} at ${format(dateObj, "h:m aaa")}`;
+  };
 
   return (
     <div className="Profile">
@@ -101,17 +109,21 @@ const Profile = () => {
             {eventData.map((event) => (
               <tr>
                 <td>
-                    <div>
-                        <div>{event.EVENT_NAME}</div>
+                  <div>                    
+                    <div className="event-card-date">
+                      {dateHandler(event.DATE)}
                     </div>
+                    <div className="event-card-name">{event.EVENT_NAME}</div>
+                    <div className="event-card-date">
+                      {event.EVENT_LOCATION}
+                    </div>
+                    <div className="event-card-price">
+                    {event.TICKET_TYPE.toUpperCase()}
+                    </div>
+                  </div>
                 </td>
+
                 
-                <td>{event.DATE}</td>
-                <td>{event.EVENT_DESC}</td>
-                <td>{event.EVENT_LOCATION}</td>
-                <td>{event.TICKET_PRICE}</td>
-                <td>{(event.TICKET_TYPE).toUpperCase()}</td>
-                <td>{event.TIMESTAMP}</td>                
               </tr>
             ))}
           </table>

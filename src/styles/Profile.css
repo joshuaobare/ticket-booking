@@ -1,3 +1,7 @@
+.Profile {
+    background-color: #f5f5f5;
+    min-height: 100%;
+}
 .profile-main {
     display: flex;
     width: 100%;

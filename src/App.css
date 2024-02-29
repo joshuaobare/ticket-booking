@@ -4,9 +4,11 @@
   /* padding: 2rem; */
   text-align: center;
   width: 100vw;
+  height: 100vh;
 }
 .App {
   width: 100%;
+  height: calc(100% - 68px);
 }
 .logo {
   height: 6em;
