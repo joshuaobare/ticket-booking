@@ -107,18 +107,21 @@ const Profile = () => {
           <h1>Orders</h1>
           <table>
             {eventData.map((event) => (
-              <tr>
-                <td>
-                  <div>                    
+              <tr className="profile-orders-tr">
+                <td className="profile-orders-td">
+                  <div>                                        
+                    <div className="event-card-name">{event.EVENT_NAME}</div>
                     <div className="event-card-date">
                       {dateHandler(event.DATE)}
                     </div>
-                    <div className="event-card-name">{event.EVENT_NAME}</div>
                     <div className="event-card-date">
                       {event.EVENT_LOCATION}
                     </div>
+                    <div className="event-card-date profile-orders-booking-date">
+                      Booked At: {dateHandler(event.TIMESTAMP)}
+                    </div>
                     <div className="event-card-price">
-                    {event.TICKET_TYPE.toUpperCase()}
+                    {`${event.TICKET_TYPE.toUpperCase()} - KShs. ${event.TICKET_PRICE}`}
                     </div>
                   </div>
                 </td>

@@ -23,3 +23,20 @@
     display: flex;
     gap: 10px;
 }
+
+.profile-orders-tr {
+    background-color: #fff;
+    margin-bottom: 10px;
+    cursor: pointer;
+    
+}
+
+.profile-orders-td{
+    padding-bottom: 10px;
+    padding: 10px;
+    width: 70%;
+}
+
+.profile-orders-booking-date {
+    color: green;
+}
