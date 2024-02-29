@@ -113,12 +113,12 @@ const Profile = ({ loggedIn }) => {
         <section className="profile-details">
           <h1>User Details</h1>
           <div className="profile-details-item">
-            <div className="profile-details-detail">
+            <div className="profile-details-user">
               {userData.first_name + " " + userData.last_name}
             </div>
           </div>
           <div className="profile-details-item">
-            <div className="profile-details-detail">{userData.email}</div>
+            <div className="profile-details-email">{userData.email}</div>
           </div>
           {userData.is_admin ? (
             <div className="profile-details-item">

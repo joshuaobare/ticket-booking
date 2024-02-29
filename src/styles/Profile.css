@@ -38,11 +38,16 @@
     padding: 0.3em 0.6em;
     color: white;
 }
-.profile-details-detail {
+.profile-details-user,.profile-details-email {
     width: 70%;
     text-align: left;
     font-weight: 700;
     font-size: large;
+}
+
+.profile-details-email {
+    font-size: smaller;
+    font-weight: normal;
 }
 .profile-orders-table {
     display: flex;
