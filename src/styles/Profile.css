@@ -1,0 +1,12 @@
+.profile-main {
+    display: flex;
+    width: 100%;
+}
+
+.profile-orders{
+    width: 100%;
+}
+
+.profile-details {
+    width: 33vw;
+}
