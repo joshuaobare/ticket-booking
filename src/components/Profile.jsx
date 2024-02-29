@@ -11,22 +11,18 @@ const Profile = () => {
     email: "",
     is_admin: false,
   });
-  const [eventData, setEventData] = useState({
-    "ticket_id": "1",
-    "event_id": "3",
-    "user_id": "2",
-    "timestamp": "2024-02-26 14:58:52",
-    "ticket_price": "50000",
-    "ticket_type": "vip",
-    "event_name": "Rave",
-    "event_location": "Kisumu",
-    "vip_ticket_price": "50000",
-    "regular_ticket_price": "20000",
-    "max_attendees": "20",
-    "event_desc": "Come Party With Us!",
-    "date": "2024-02-11 18:17:00",
-    "image": "/src/assets/blackbg.jpg"
-})
+  const [eventData, setEventData] = useState([
+    {
+      DATE: "",
+      EVENT_DESC: "",
+      EVENT_LOCATION: "",
+      EVENT_NAME: "",
+      IMAGE: "",
+      TICKET_PRICE: "",
+      TICKET_TYPE: "",
+      TIMESTAMP: "",
+    },
+  ]);
 
   const fetchUser = async (user_id) => {
     try {
@@ -66,12 +62,16 @@ const Profile = () => {
           },
         }
       );
-      const response = await request.json()
-      console.log(response)
+      const response = await request.json();
+
+      if (response.message) {
+        setEventData(response.message);
+      }
     } catch (error) {
       console.log(error);
     }
   };
+  console.log(eventData);
 
   useEffect(() => {
     fetchUser(id);
@@ -97,6 +97,24 @@ const Profile = () => {
         </section>
         <section className="profile-orders">
           <h1>Orders</h1>
+          <table>
+            {eventData.map((event) => (
+              <tr>
+                <td>
+                    <div>
+                        <div>{event.EVENT_NAME}</div>
+                    </div>
+                </td>
+                
+                <td>{event.DATE}</td>
+                <td>{event.EVENT_DESC}</td>
+                <td>{event.EVENT_LOCATION}</td>
+                <td>{event.TICKET_PRICE}</td>
+                <td>{(event.TICKET_TYPE).toUpperCase()}</td>
+                <td>{event.TIMESTAMP}</td>                
+              </tr>
+            ))}
+          </table>
         </section>
       </main>
     </div>
