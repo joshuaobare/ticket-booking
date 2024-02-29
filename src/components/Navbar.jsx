@@ -75,12 +75,12 @@ const Navbar = ({ setLoggedIn, loggedIn }) => {
         <div className="navbar-right">
           <div className="navbar-link-cont">
             <Link to="/login">
-              <div>Sign In</div>
+              <div className="navbar-link-item">Sign In</div>
             </Link>
           </div>
           <div className="navbar-link-cont">
             <Link to="/signup">
-              <div>Register</div>
+              <div className="navbar-link-item">Register</div>
             </Link>
           </div>
         </div>

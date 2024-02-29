@@ -5,7 +5,7 @@
     justify-content: space-evenly;    
 }
 
-.navbar > div {
+.navbar-left,.navbar-mid,.navbar-right{
     width: 33.3%;
 }
 
@@ -35,4 +35,16 @@
 .navbar-link-logout-btn {
     background-color: black;
     color: white;
+}
+
+@media screen {
+    .navbar-mid {
+        width: 20%;
+    }
+    .navbar-right {
+        width: 40%;
+    }
+    .navbar-link-item {
+        width: fit-content;
+    }
 }
