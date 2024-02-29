@@ -8,6 +8,8 @@ import SignUp from "./SignUp";
 import { Dialog } from "@mui/material";
 import { Close } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 const Profile = ({ loggedIn }) => {
   const { id } = useParams();
@@ -34,6 +36,8 @@ const Profile = ({ loggedIn }) => {
     },
   ]);
   const [registerDialogOpen, setRegisterDialogOpen] = useState(false);
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
   const fetchUser = async (user_id) => {
     try {
@@ -179,7 +183,7 @@ const Profile = ({ loggedIn }) => {
             </tbody>
           </table>
         </section>
-        <Dialog open={registerDialogOpen} containerStyle = {dialogStyles}>
+        <Dialog open={registerDialogOpen} fullScreen = {fullScreen}>
           <div className="profile-register-admin-dialog">
             <div className="profile-register-close-cont">
               <button
