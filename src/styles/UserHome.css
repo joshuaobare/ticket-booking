@@ -47,3 +47,11 @@
   row-gap: 2.375rem;
   flex-flow: row wrap;
 }
+
+@media (max-width:600px) {
+  .UserHome-cont {
+    width: 80vw;
+  }
+
+
+}
