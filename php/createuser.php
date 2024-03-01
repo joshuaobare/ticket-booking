@@ -5,6 +5,8 @@ include_once("./header.php");
 $data = file_get_contents('php://input');
 $_POST = json_decode($data, true);
 
+
+// this file adds users to the database
 if (
     isset($_POST["first_name"]) && isset($_POST["last_name"]) && isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["is_admin"])){
         try {

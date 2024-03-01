@@ -4,6 +4,8 @@ import { Dialog } from "@mui/material";
 import "../styles/CreateEvent.css";
 import { Close } from "@mui/icons-material";
 import blackbg from "../assets/blackbg.jpg";
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 function EditEvent({
   dialogOpen,
@@ -22,6 +24,8 @@ function EditEvent({
       date: eventData.date,
     });
   const [image, setImage] = useState("");
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
   useEffect(() => {
     setFormData({
@@ -101,7 +105,7 @@ function EditEvent({
     });
   };
   return (
-    <Dialog open={dialogOpen}>
+    <Dialog open={dialogOpen} fullScreen={fullScreen}>
       <div className="create-event-header">
         <h2 className="create-event-heading">Edit Event</h2>
         <button className="create-event-close" onClick={dialogToggler}>

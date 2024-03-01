@@ -6,6 +6,7 @@ include_once("./header.php");
 $data = file_get_contents('php://input');
 $_PUT = json_decode($data, true);
 
+// this file edits an event
 if (
     isset($_PUT["event_name"]) && isset($_PUT["date"]) && isset($_PUT["event_location"]) && isset($_PUT["vip_ticket_price"]) && isset($_PUT["regular_ticket_price"])
     && isset($_PUT["max_attendees"]) && isset($_PUT["event_id"])&& isset($_PUT["event_desc"]) && isset($_PUT["image"])

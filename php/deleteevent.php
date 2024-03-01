@@ -6,6 +6,7 @@ include_once("./header.php");
 $data = file_get_contents('php://input');
 $_DELETE = json_decode($data, true);
 
+// this file deletes an event
 if (isset($_DELETE['event_id'])) {
     try {
         $sql = "DELETE FROM EVENT WHERE EVENT_ID = :EVENT_ID";
