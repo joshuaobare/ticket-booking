@@ -16,5 +16,5 @@ try {
     $res = array("events" => $data, "message" => "Successfully fetched all events");
     echo json_encode($res);
 } catch (Exception $e) {
-    echo "An error has occurred";
+    echo json_encode(array("error" => $e));
 }

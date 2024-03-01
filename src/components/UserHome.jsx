@@ -54,13 +54,12 @@ const UserHome = ({ loggedIn }) => {
           },
         }
       );
-      const response = await request.json();
-      console.log(response)
+      const response = await request.json();      
 
       response.events.sort(
         (b, a) =>
-          new Date(a.date).getTime() -
-          new Date(b.date).getTime()
+        new Date(b.date).getTime() -
+          new Date(a.date).getTime()           
       );
 
 
@@ -127,7 +126,7 @@ const UserHome = ({ loggedIn }) => {
           <div className="UserHome-events-grid">
             {allEvents.map((event) => {
               return (
-                <Link to={`event/${event.event_id}`}>
+                <Link to={`event/${event.event_id}`} key={event.event_id}>
                   <EventCard event={event} />
                 </Link>
               );

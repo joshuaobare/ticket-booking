@@ -36,6 +36,10 @@
     /* margin-top: 5px; */
     padding:1.125rem 1rem;
 }
+.login-error-message {
+    font-size: .825rem;
+    color: red;
+}
 
 @media (max-width: 600px) {
     .login-form {

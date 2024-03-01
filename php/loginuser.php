@@ -28,10 +28,13 @@ if (
                 $res = array("error" => "Unsuccessful login");
                 echo json_encode($res);
             }
+        } else {
+            $res = array("error" => "Unsuccessful login");
+            echo json_encode($res);
         }
 
     } catch (Exception $e) {
-        $res = array("error" => $e . getMessage());
+        $res = array("error" => $e);
         echo json_encode($res);
     }
 }

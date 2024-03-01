@@ -88,7 +88,7 @@ const Login = ({ setLoggedIn, setIsAdmin }) => {
           />
         </div>
         <div className="login-form-forgot-pass">Forgot Password ?</div>
-        <div>{loginError}</div>
+        <div className="login-error-message">{loginError}</div>
         <button className="login-form-submit-btn">Submit</button>
       </form>
     </div>
