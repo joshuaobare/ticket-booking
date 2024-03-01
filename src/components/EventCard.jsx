@@ -1,12 +1,13 @@
 import blackbg from "../assets/blackbg.jpg";
 import { format } from "date-fns";
+
+// entry point is the UserHome component
 const EventCard = ({ event }) => {
   const style = {
     background: `url(${ event.image || blackbg}) no-repeat`,
     backgroundSize: 'cover'
   };
-  //console.log(event.image)
-
+  
   const dateHandler = (date) => {
     const dateObj = new Date(date);
     return `${format(dateObj, "EEE do MMMM")} at ${format(dateObj, "hh:mm aaa")}`

@@ -11,14 +11,7 @@ import { Link } from "react-router-dom";
 
 const FullEvent = ({ loggedIn }) => {
   const { id } = useParams();
-  const navigate = useNavigate();
-  const [userData, setUserData] = useState({
-    user_id: null,
-    first_name: "",
-    last_name: "",
-    email: "",
-    is_admin: false,
-  });
+  const navigate = useNavigate();  
   const [bookingSuccessful, setBookingSuccessful] = useState(false);
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
@@ -33,17 +26,25 @@ const FullEvent = ({ loggedIn }) => {
     vip_ticket_price: "",
     image: "",
   });
+  const [userData, setUserData] = useState({
+    user_id: null,
+    first_name: "",
+    last_name: "",
+    email: "",
+    is_admin: false,
+  });
   const [ticketCount, setTicketCount] = useState({
     vip_tickets: 0,
     regular_tickets: 0,
     availableCount: 0,
   });
-
   const [selectedTickets, setSelectedTickets] = useState({
     vip_tickets: 0,
     regular_tickets: 0,
   });
 
+  // sendEmail is provided by EmailJS and send an email on successful booking
+  // the email is sent to userData.email
   const sendEmail = () => {
     const params = {
       to_name: `${userData.first_name} ${userData.last_name}`,
@@ -59,6 +60,7 @@ const FullEvent = ({ loggedIn }) => {
       });
   };
 
+  // userVerification populates userData state
   const userVerification = async (user_id) => {
     try {
       const request = await fetch(
@@ -128,28 +130,7 @@ const FullEvent = ({ loggedIn }) => {
     }
   };
 
-  useEffect(() => {
-    fetchEvent();
-    if (localStorage.getItem("user_id")) {
-      userVerification(localStorage.getItem("user_id"));
-    }
-  }, []);
 
-
-  useEffect(() => {
-    fetchEvent();
-    if (localStorage.getItem("user_id")) {
-      userVerification(localStorage.getItem("user_id"));
-    } else {
-      setUserData({
-        user_id: null,
-        first_name: "",
-        last_name: "",
-        email: "",
-        is_admin: false,
-      })
-    }
-  }, [loggedIn])
 
   const deleteEvent = async () => {
     try {
@@ -163,8 +144,7 @@ const FullEvent = ({ loggedIn }) => {
           body: JSON.stringify({ event_id: id }),
         }
       );
-      const response = await request.json();
-      console.log(response);
+      const response = await request.json();      
 
       if (response.message) {
         deleteDialogToggler();
@@ -175,60 +155,13 @@ const FullEvent = ({ loggedIn }) => {
     }
   };
 
-  useEffect(() => {
-    const fetchTicketCount = async () => {
-      try {
-        const request = await fetch(
-          `http://localhost:8080/ticket-booking/php/ticketcounter.php?user_id=${userData.user_id}&event_id=${eventData.event_id}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-type": "application/json",
-            },
-          }
-        );
-        const response = await request.json();
-
-        if (response.message) {
-          setTicketCount({
-            vip_tickets: Number(response.vip_tickets),
-            regular_tickets: Number(response.regular_tickets),
-            availableCount:
-              6 -
-              (Number(response.vip_tickets) +
-                Number(response.regular_tickets) +
-                selectedTickets.regular_tickets +
-                selectedTickets.vip_tickets),
-          });
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    if (!loggedIn) {
-      fetchTicketCount();
-    }
-  }, [eventData]);
-
+  // dateHandler formats dates 
   const dateHandler = (date) => {
     const dateObj = new Date(date);
     return `${format(dateObj, "EEE do MMMM")} at ${format(dateObj, "hh:mm aaa")}`;
   };
 
-  useEffect(() => {
-    setTicketCount((prevState) => {
-      return {
-        ...prevState,
-        availableCount:
-          6 -
-          (Number(ticketCount.vip_tickets) +
-            Number(ticketCount.regular_tickets) +
-            selectedTickets.regular_tickets +
-            selectedTickets.vip_tickets),
-      };
-    });
-  }, [selectedTickets]);
-
+  // incrementCount and decrememtCount are called when ticket buttons are clicked
   const decrementCount = (ticketType) => {
     setSelectedTickets((prevState) => {
       return { ...prevState, [ticketType]: prevState[ticketType] - 1 };
@@ -260,7 +193,7 @@ const FullEvent = ({ loggedIn }) => {
         }
       );
       const response = await request.json();
-      console.log(response);
+      
 
       if (response.message.length > 0) {
         fetchEvent();
@@ -282,6 +215,84 @@ const FullEvent = ({ loggedIn }) => {
   const deleteDialogToggler = () => {
     setDeleteDialogOpen((prevState) => !prevState);
   };
+
+  // when FullEvent mounts, we check if user_id is in localStorage, if so it's verified 
+  useEffect(() => {
+    fetchEvent();
+    if (localStorage.getItem("user_id")) {
+      userVerification(localStorage.getItem("user_id"));
+    }
+  }, []);
+
+  // when loggedIn state changes the app will be rerendered, a check for user_id is done
+  useEffect(() => {
+    fetchEvent();
+    if (localStorage.getItem("user_id")) {
+      userVerification(localStorage.getItem("user_id"));
+    } else {
+      setUserData({
+        user_id: null,
+        first_name: "",
+        last_name: "",
+        email: "",
+        is_admin: false,
+      })
+    }
+  }, [loggedIn])
+
+  // when eventData state changes the number of tickets the user has already purchased is fetched
+  // the limit is 5
+  useEffect(() => {
+    const fetchTicketCount = async () => {
+      try {
+        const request = await fetch(
+          `http://localhost:8080/ticket-booking/php/ticketcounter.php?user_id=${userData.user_id}&event_id=${eventData.event_id}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-type": "application/json",
+            },
+          }
+        );
+        const response = await request.json();
+
+        if (response.message) {
+          setTicketCount({
+            vip_tickets: Number(response.vip_tickets),
+            regular_tickets: Number(response.regular_tickets),
+            availableCount:
+              6 -
+              (Number(response.vip_tickets) +
+                Number(response.regular_tickets) +
+                selectedTickets.regular_tickets +
+                selectedTickets.vip_tickets),
+          });
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    // if the user is loggedIn the ticketCount is fetched from the DB
+    if (loggedIn) {
+      fetchTicketCount();
+    }
+  }, [eventData]);
+
+  // when the user selects tickets the availableTickets are recalculated
+  useEffect(() => {
+    setTicketCount((prevState) => {
+      return {
+        ...prevState,
+        availableCount:
+          6 -
+          (Number(ticketCount.vip_tickets) +
+            Number(ticketCount.regular_tickets) +
+            selectedTickets.regular_tickets +
+            selectedTickets.vip_tickets),
+      };
+    });
+  }, [selectedTickets]);
 
   return (
     <div className="full-event">

@@ -134,7 +134,8 @@ tr >td {
     align-items: center;    
 }
 .ticket-counter-button {
-    
+    background-color: #fff;
+    color: black;
 }
 
 .full-event-ticket-disclaimer {
