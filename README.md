@@ -1,5 +1,7 @@
 # TicketFlow: Ticket Booking App
 
+[Live Demo](https://ticketflow-booking.000webhostapp.com/)
+
 ## Features
 - A unique admin interface
 - Admin is able to create, update and delete events and set maximum number of attendees
