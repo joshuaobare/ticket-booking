@@ -15,7 +15,7 @@ const Navbar = ({ setLoggedIn, loggedIn }) => {
   const userVerification = async (user_id) => {
     try {
       const request = await fetch(
-        `http://localhost:8080/ticket-booking/php/fetchuser.php?id=${user_id}`,
+        `https://ticketflow-booking.000webhostapp.com/php/fetchuser.php?id=${user_id}`,
         {
           method: "GET",
           headers: {

@@ -13,7 +13,7 @@ const SignUp = ({is_admin}) => {
     e.preventDefault();
     try {
       const request = await fetch(
-        "http://localhost:8080/ticket-booking/php/createuser.php",
+        "https://ticketflow-booking.000webhostapp.com/php/createuser.php",
         {
           method: "POST",
           headers: { "Content-type": "application/json" },

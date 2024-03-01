@@ -16,7 +16,7 @@ const Login = ({ setLoggedIn, setIsAdmin }) => {
     e.preventDefault();
     try {
       const request = await fetch(
-        "http://localhost:8080/ticket-booking/php/loginuser.php",
+        "https://ticketflow-booking.000webhostapp.com/php/loginuser.php",
         {
           method: "POST",
           headers: { "Content-type": "application/json" },

@@ -55,7 +55,7 @@ function CreateEvent({ dialogOpen, dialogToggler, fetchEvents }) {
     
     try {
       const request = await fetch(
-        "http://localhost:8080/ticket-booking/php/events.php",
+        "https://ticketflow-booking.000webhostapp.com/php/events.php",
         {
           method: "POST",
           headers: { "Content-type": "application/json" },

@@ -72,7 +72,7 @@ function EditEvent({
     e.preventDefault();    
     try {
       const request = await fetch(
-        "http://localhost:8080/ticket-booking/php/editevent.php",
+        "https://ticketflow-booking.000webhostapp.com/php/editevent.php",
         {
           method: "PUT",
           headers: { "Content-type": "application/json" },
