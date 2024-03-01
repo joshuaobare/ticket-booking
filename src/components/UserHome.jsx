@@ -55,6 +55,15 @@ const UserHome = ({ loggedIn }) => {
         }
       );
       const response = await request.json();
+      console.log(response)
+
+      response.events.sort(
+        (b, a) =>
+          new Date(a.date).getTime() -
+          new Date(b.date).getTime()
+      );
+
+
       setAllEvents(response.events);
     } catch (error) {
       console.log(error);
