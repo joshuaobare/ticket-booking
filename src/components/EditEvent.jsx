@@ -7,6 +7,7 @@ import blackbg from "../assets/blackbg.jpg";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
+// entry point is Profile component
 function EditEvent({
   dialogOpen,
   dialogToggler,
@@ -40,25 +41,35 @@ function EditEvent({
     setImage(eventData.image || blackbg);
   }, [eventData]);
 
+  // This function takes a file object as input and returns a promise that resolves
+  // with the base64 representation of the file.
   function convertToBase64(file) {
     return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        resolve(reader.result);
-      };
-      reader.onerror = (error) => {
-        reject(error);
-      };
+        // Create a new FileReader object to read the contents of the file.
+        const reader = new FileReader();      
+        // Read the file as a data URL, which represents the file's data as a base64 encoded string.
+        reader.readAsDataURL(file);      
+        // Event handler for when the reading operation is completed successfully.
+        reader.onload = () => {
+            // Resolve the promise with the base64 data URL.
+            resolve(reader.result);
+        };      
+        // Event handler for when an error occurs during the reading operation.
+        reader.onerror = (error) => {
+            // Reject the promise with the encountered error.
+            reject(error);
+        };
     });
   }
+
+  // image change handler function
   const handleImage = async (e) => {
     setImage(await convertToBase64(e.target.files[0]));
   };
 
+  // form submission handler function
   const formSubmit = async (e) => {
-    e.preventDefault();
-    console.log(JSON.stringify(formData));
+    e.preventDefault();    
     try {
       const request = await fetch(
         "http://localhost:8080/ticket-booking/php/editevent.php",
@@ -70,6 +81,7 @@ function EditEvent({
       );
       const response = await request.json();
 
+      // if submission is successful, toggle dialog and reset formData state
       if (response.message) {
         setFormData({
           event_name: "",
@@ -89,6 +101,7 @@ function EditEvent({
     }
   };
 
+  // form input change handler function
   const formChange = (e) => {
     const { name, value, type, files } = e.target;
 

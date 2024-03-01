@@ -2,6 +2,7 @@ import { Dialog } from "@mui/material";
 import { Close } from "@mui/icons-material";
 import "../styles/DeleteEvent.css";
 
+// entry point is FullEvent component
 const DeleteEvent = ({ dialogToggler, dialogOpen, deleteEvent }) => {
   return (
     <Dialog open={dialogOpen}>

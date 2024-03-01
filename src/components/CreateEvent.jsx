@@ -6,6 +6,7 @@ import { Close } from "@mui/icons-material";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
+// entry point = UserHome component
 function CreateEvent({ dialogOpen, dialogToggler, fetchEvents }) {
   const [formData, setFormData] = useState({
     event_name: "",
