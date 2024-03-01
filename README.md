@@ -1,8 +1,25 @@
-# React + Vite
+# TicketFlow: Ticket Booking App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Features
+- A unique admin interface
+- Admin is able to create, update and delete events and set maximum number of attendees
+- The user receives an email notification on successful reservation
 
-Currently, two official plugins are available:
+## Built With
+- PHP
+- React.js
+- MySQL database
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Installation
+
+### Clone repository
+```
+git clone https://github.com/joshuaobare/ticket-booking.git
+cd ticket-booking
+```
+
+### Install packages and start client
+```
+npm install
+npm run dev
+```

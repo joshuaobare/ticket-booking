@@ -86,8 +86,7 @@ const Login = ({ setLoggedIn, setIsAdmin }) => {
             className="login-form-input"
             required
           />
-        </div>
-        <div className="login-form-forgot-pass">Forgot Password ?</div>
+        </div>        
         <div className="login-error-message">{loginError}</div>
         <button className="login-form-submit-btn">Submit</button>
       </form>
