@@ -59,7 +59,7 @@ const Profile = ({ loggedIn }) => {
           first_name: response.user.first_name,
           last_name: response.user.last_name,
           email: response.user.email,
-          is_admin: response.user.is_admin === "1" ? true : false,
+          is_admin: response.user.is_admin === 1 ? true : false,
         });
       }
     } catch (error) {

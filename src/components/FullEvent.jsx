@@ -81,7 +81,7 @@ const FullEvent = ({ loggedIn }) => {
           first_name: response.user.first_name,
           last_name: response.user.last_name,
           email: response.user.email,
-          is_admin: response.user.is_admin === "1" ? true : false,
+          is_admin: response.user.is_admin === 1 ? true : false,
         });
       }
     } catch (error) {
@@ -138,7 +138,7 @@ const FullEvent = ({ loggedIn }) => {
       const request = await fetch(
         `https://ticketflow-booking.000webhostapp.com/php/deleteevent.php`,
         {
-          method: "DELETE",
+          method: "POST",
           headers: {
             "Content-type": "application/json",
           },

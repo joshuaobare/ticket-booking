@@ -28,20 +28,20 @@ const UserHome = ({ loggedIn }) => {
         }
       );
       const response = await request.json();
-
+        
       if (response.user) {
         setUserData({
           user_id: response.user.user_id,
           first_name: response.user.first_name,
           last_name: response.user.last_name,
           email: response.user.email,
-          is_admin: response.user.is_admin === "1" ? true : false,
+          is_admin: response.user.is_admin === 1 ? true : false,
         });
       }
     } catch (error) {
       console.log(error);
     }
-  };
+  };  
 
   const fetchEvents = async () => {
     try {
