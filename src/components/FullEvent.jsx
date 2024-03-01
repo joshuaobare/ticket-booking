@@ -65,7 +65,7 @@ const FullEvent = ({ loggedIn }) => {
   const userVerification = async (user_id) => {
     try {
       const request = await fetch(
-        `https://ticketflow-booking.000webhostapp.com/php/fetchuser.php?id=${user_id}`,
+        `http://localhost:8080/ticket-booking/php/fetchuser.php?id=${user_id}`,
         {
           method: "GET",
           headers: {
@@ -92,7 +92,7 @@ const FullEvent = ({ loggedIn }) => {
   const fetchEvent = async () => {
     try {
       const request = await fetch(
-        `https://ticketflow-booking.000webhostapp.com/php/fetchevent.php?id=${id}`,
+        `http://localhost:8080/ticket-booking/php/fetchevent.php?id=${id}`,
         {
           method: "GET",
           headers: {
@@ -136,9 +136,9 @@ const FullEvent = ({ loggedIn }) => {
   const deleteEvent = async () => {
     try {
       const request = await fetch(
-        `https://ticketflow-booking.000webhostapp.com/php/deleteevent.php`,
+        `http://localhost:8080/ticket-booking/php/deleteevent.php`,
         {
-          method: "POST",
+          method: "DELETE",
           headers: {
             "Content-type": "application/json",
           },
@@ -178,7 +178,7 @@ const FullEvent = ({ loggedIn }) => {
   const bookTickets = async () => {
     try {
       const request = await fetch(
-        "https://ticketflow-booking.000webhostapp.com/php/bookticket.php",
+        "http://localhost:8080/ticket-booking/php/bookticket.php",
         {
           method: "POST",
           body: JSON.stringify({
@@ -247,7 +247,7 @@ const FullEvent = ({ loggedIn }) => {
     const fetchTicketCount = async () => {
       try {
         const request = await fetch(
-          `https://ticketflow-booking.000webhostapp.com/php/ticketcounter.php?user_id=${userData.user_id}&event_id=${eventData.event_id}`,
+          `http://localhost:8080/ticket-booking/php/ticketcounter.php?user_id=${userData.user_id}&event_id=${eventData.event_id}`,
           {
             method: "GET",
             headers: {
