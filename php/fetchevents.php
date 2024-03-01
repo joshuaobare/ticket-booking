@@ -2,10 +2,10 @@
 include_once("./pdo.php");
 include_once("./header.php");
 
-
 $data = file_get_contents('php://input');
 $_POST = json_decode($data, true);
 
+// this file fetches all events in the database
 try{
     $sql = "SELECT * FROM EVENT";
     $stmt = $pdo->query($sql);

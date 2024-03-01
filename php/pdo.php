@@ -8,6 +8,6 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
 } catch(PDOException $e) {
-    echo "Connection attempt failed successfully <br>" .$e->getMessage();
+    echo json_encode(array("message"=>"Connection attempt failed successfully" .$e->getMessage()));
 }
 

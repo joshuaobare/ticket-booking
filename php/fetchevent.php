@@ -3,6 +3,7 @@
 include_once("./pdo.php");
 include_once("./header.php");
 
+// this file fetches a single event based on an id GET request
 if (isset($_GET['id'])) {
     try {
         $sql = "SELECT * FROM EVENT WHERE EVENT_ID = :ID";

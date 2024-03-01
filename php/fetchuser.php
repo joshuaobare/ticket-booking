@@ -2,6 +2,8 @@
 include_once("./pdo.php");
 include_once("./header.php");
 
+
+// this file fetches a user based on a GET id request
 if (isset($_GET['id'])) {
     try {
         $sql = "SELECT * FROM USER WHERE USER_ID=:USER_ID";

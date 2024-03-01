@@ -5,6 +5,7 @@ include_once("./header.php");
 $data = file_get_contents('php://input');
 $_POST = json_decode($data, true);
 
+// this file creates an event
 if (
     isset($_POST["event_name"]) && isset($_POST["date"]) && isset($_POST["event_location"]) && isset($_POST["vip_ticket_price"]) && isset($_POST["regular_ticket_price"])
     && isset($_POST["max_attendees"]) && isset($_POST["event_desc"]) && isset($_POST["image"])

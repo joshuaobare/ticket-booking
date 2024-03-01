@@ -4,6 +4,8 @@ include_once("./pdo.php");
 include_once("./header.php");
 
 $res = array("message" => array());
+
+// this file fetches all events a particular user has booked via an inner join
 if (isset($_GET['user_id'])) {
     try {
         $sql = "SELECT TICKETING.TICKET_ID,EVENT.DATE,EVENT.EVENT_ID, EVENT.EVENT_DESC, EVENT.EVENT_LOCATION, EVENT.EVENT_NAME, EVENT.IMAGE,TICKETING.TICKET_PRICE, TICKETING.TICKET_TYPE, TICKETING.TIMESTAMP 
