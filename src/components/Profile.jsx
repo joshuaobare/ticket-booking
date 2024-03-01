@@ -108,7 +108,7 @@ const Profile = ({ loggedIn }) => {
 
   const dateHandler = (date) => {
     const dateObj = new Date(date);
-    return `${format(dateObj, "EEE do MMMM")} at ${format(dateObj, "h:m aaa")}`;
+    return `${format(dateObj, "EEE do MMMM")} at ${format(dateObj, "hh:mm aaa")}`;
   };
 
   const dialogStyles = {

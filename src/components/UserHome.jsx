@@ -120,27 +120,7 @@ const UserHome = ({ loggedIn }) => {
                 </Link>
               );
             })}
-            {allEvents.map((event) => {
-              return (
-                <Link to={`event/${event.event_id}`}>
-                  <EventCard event={event} />
-                </Link>
-              );
-            })}
-            {allEvents.map((event) => {
-              return (
-                <Link to={`event/${event.event_id}`}>
-                  <EventCard event={event} />
-                </Link>
-              );
-            })}
-            {allEvents.map((event) => {
-              return (
-                <Link to={`event/${event.event_id}`}>
-                  <EventCard event={event} />
-                </Link>
-              );
-            })}
+            
           </div>
         ) : (
           <div>There are no upcoming events. Please check again soon</div>
