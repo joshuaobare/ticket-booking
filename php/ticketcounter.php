@@ -5,6 +5,7 @@ include_once("./header.php");
 $vip_count = 0;
 $reg_count = 0;
 
+// this file counts vip and regular tickets purchased for a given event
 if (isset($_GET['event_id']) && isset($_GET['user_id'])) {
     try {
         $sql = "SELECT COUNT(*) AS 'TICKETS PURCHASED' FROM TICKETING WHERE EVENT_ID = :EVENT_ID AND USER_ID = :USER_ID AND TICKET_TYPE= 'VIP'";
