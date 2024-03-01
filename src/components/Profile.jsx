@@ -11,9 +11,13 @@ import { useNavigate } from "react-router-dom";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
+// entry point is App component
 const Profile = ({ loggedIn }) => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [registerDialogOpen, setRegisterDialogOpen] = useState(false);
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
   const [userData, setUserData] = useState({
     user_id: null,
     first_name: "",
@@ -34,10 +38,7 @@ const Profile = ({ loggedIn }) => {
       TICKET_TYPE: "",
       TIMESTAMP: Date.now(),
     },
-  ]);
-  const [registerDialogOpen, setRegisterDialogOpen] = useState(false);
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+  ]);  
 
   const fetchUser = async (user_id) => {
     try {
@@ -77,8 +78,7 @@ const Profile = ({ loggedIn }) => {
           },
         }
       );
-      const response = await request.json();
-      console.log(response);
+      const response = await request.json();      
 
       if (response.message) {
         setEventData([...response.message].reverse());
@@ -92,33 +92,27 @@ const Profile = ({ loggedIn }) => {
     setRegisterDialogOpen((prevState) => !prevState);
   };
 
+  const dateHandler = (date) => {
+    const dateObj = new Date(date);
+    return `${format(dateObj, "EEE do MMMM")} at ${format(dateObj, "hh:mm aaa")}`;
+  };
+
   useEffect(() => {
     fetchUser(id);
   }, []);
 
+  // when userData state changes, events will be fetched again
   useEffect(() => {
     fetchEvents();
   }, [userData]);
 
+  // if the user hasn't logged in, we navigate to UserHome component
   useEffect(() => {
     if (!loggedIn) {
       navigate("/");
     }
   }, [loggedIn]);
 
-  const dateHandler = (date) => {
-    const dateObj = new Date(date);
-    return `${format(dateObj, "EEE do MMMM")} at ${format(dateObj, "hh:mm aaa")}`;
-  };
-
-  const dialogStyles = {
-    drawerWidth: {
-      
-      '@media (min-width: 600px)': {
-        width: '90%'
-      }
-    }
-  }
 
   return (
     <div className="Profile">

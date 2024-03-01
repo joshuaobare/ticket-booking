@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "../styles/Navbar.css";
 import { Link } from "react-router-dom";
 
+// entry point is App component
 const Navbar = ({ setLoggedIn, loggedIn }) => {
   const [userData, setUserData] = useState({
     user_id: null,
@@ -38,8 +39,12 @@ const Navbar = ({ setLoggedIn, loggedIn }) => {
     }
   };
 
-  useEffect(() => {    
+  const logout = () => {
+    localStorage.removeItem("user_id")
+    setLoggedIn(false)
+  }
 
+  useEffect(() => { 
     if (localStorage.getItem("user_id")) {
       userVerification(localStorage.getItem("user_id"));
     }
@@ -59,11 +64,6 @@ const Navbar = ({ setLoggedIn, loggedIn }) => {
       )
     }
   },[loggedIn])
-
-  const logout = () => {
-    localStorage.removeItem("user_id")
-    setLoggedIn(false)
-  }
 
   return (
     <nav className="navbar">

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../styles/SignUp.css"
 
+// entry point is App component
 const SignUp = ({is_admin}) => {
   const [formData, setFormData] = useState({
     first_name: "",
@@ -20,7 +21,7 @@ const SignUp = ({is_admin}) => {
         }
       );
       const response = await request.json();
-      console.log(response);
+      
       setFormData({
         first_name: "",
         last_name: "",

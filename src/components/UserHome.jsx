@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "../styles/UserHome.css";
 import CreateEvent from "./CreateEvent";
 
+// entry point is App component
 const UserHome = ({ loggedIn }) => {
   const [allEvents, setAllEvents] = useState([]);
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -60,6 +61,11 @@ const UserHome = ({ loggedIn }) => {
     }
   };
 
+  const dialogToggler = () => {
+    setDialogOpen((prevState) => !prevState);
+  };
+
+  // when component mounts all events are fetched
   useEffect(() => {
     fetchEvents();
     if (localStorage.getItem("user_id")) {
@@ -67,6 +73,7 @@ const UserHome = ({ loggedIn }) => {
     }
   }, []);
 
+  //when loggedIn state changes, user is verified or userData state is refreshed
   useEffect(() => {
     fetchEvents();
     if (localStorage.getItem("user_id")) {
@@ -81,10 +88,6 @@ const UserHome = ({ loggedIn }) => {
       });
     }
   }, [loggedIn]);
-
-  const dialogToggler = () => {
-    setDialogOpen((prevState) => !prevState);
-  };
 
   return (
     <div className="UserHome">

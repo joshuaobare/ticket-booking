@@ -3,13 +3,13 @@ import "../App.css";
 import "../styles/Login.css";
 import { useNavigate } from "react-router-dom";
 
+// entry point is App component
 const Login = ({ setLoggedIn, setIsAdmin }) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-
   const [loginError, setLoginError] = useState("");
 
   const formSubmit = async (e) => {
@@ -24,7 +24,7 @@ const Login = ({ setLoggedIn, setIsAdmin }) => {
         }
       );
       const response = await request.json();
-      console.log(response);
+      
       if (response.message) {
         setLoggedIn(true);
         setIsAdmin(response.user.isAdmin);

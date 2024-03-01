@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import emailjs from "@emailjs/browser";
 import { Link } from "react-router-dom";
 
+// entry point is App component
 const FullEvent = ({ loggedIn }) => {
   const { id } = useParams();
   const navigate = useNavigate();  
