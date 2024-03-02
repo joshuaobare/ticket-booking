@@ -12,6 +12,7 @@
 - React.js
 - MySQL database
 - Material UI components
+- EmailJS
 
 ## Installation
 
